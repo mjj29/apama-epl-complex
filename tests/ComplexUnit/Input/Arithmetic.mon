@@ -1,0 +1,56 @@
+using com.apamax.Complex;
+
+monitor Arithmetic
+{
+	action onload()
+	{
+		testbinary(
+			"add",
+			Complex(5., 6.),
+			Complex(2., 4.),
+			Complex(3., 2.));
+		testbinary(
+			"subtract",
+			Complex(5., -6.),
+			Complex(12., 7.),
+			Complex(7., 13.));
+		testbinary(
+			"multiply",
+			Complex(-7., 22.),
+			Complex(2., 3.),
+			Complex(4., 5.));
+		testbinary(
+			"divide",
+			Complex(2., 3.),
+			Complex(-7., 22.),
+			Complex(4., 5.));
+	}
+	
+	action testbinary(string name, 
+			Complex r,
+			Complex a,
+			Complex b)
+	{
+		Complex a2 := a.clone(); 
+		action<Complex, Complex> returns Complex staticAction := 
+			<action<Complex, Complex> returns Complex> (<any> r).getAction(name);
+		log a.toValueString()+" "+name+" "+b.toValueString();
+		if not r = staticAction(a, b) {
+			log name+" failed" at ERROR;
+		}
+		action<Complex> returns Complex instanceAction := 
+			<action<Complex> returns Complex> (<any> a).getAction("u"+name);
+		log a.toValueString()+" u"+name+" "+b.toValueString();
+		Complex rv := instanceAction(b);
+		if not r = rv {
+			log "u"+name+" rv failed ("+r.toValueString()+" != "+rv.toValueString()+")" at ERROR;
+		}
+		action<Complex> returns Complex instanceAction2 := 
+			<action<Complex> returns Complex> (<any> a2).getAction("u"+name);
+		log a2.toValueString()+" u"+name+" "+b.toValueString();
+		Complex _ := instanceAction2(b);
+		if not r = a2 {
+			log "u"+name+" failed ("+r.toValueString()+" != "+a2.toValueString()+")" at ERROR;
+		}
+	}
+}

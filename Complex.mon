@@ -16,6 +16,14 @@ package com.apamax;
 
 event Complex
 {
+	static action E() returns Complex { return Complex(float.E, 0.); }
+	static action PI() returns Complex { return Complex(float.PI, 0.); }
+	static action I() returns Complex { return Complex(0., 1.); }
+	static action ZERO() returns Complex { return Complex(0., 0.); }
+	static action ONE() returns Complex { return Complex(1., 0.); }
+	static action INFINITY() returns Complex { return Complex(float.INFINITY, float.INFINITY); }
+	static action NAN() returns Complex { return Complex(float.NAN, float.NAN); }
+
 	action real() returns float { return r; }
 	action imag() returns float { return i; }
 
@@ -143,8 +151,9 @@ event Complex
 	action udivide(Complex b) returns Complex
 	{
 		float denom := b.r*b.r+b.i*b.i;
-		r := (r*b.r+i*b.i)/denom;
+		float tr := (r*b.r+i*b.i)/denom;
 		i := (b.r*i-r*b.i)/denom;
+		r := tr;
 		return self;
 	}
 	action uadd(Complex b) returns Complex 
@@ -161,8 +170,9 @@ event Complex
 	}
 	action umultiply(Complex b) returns Complex
 	{
-		r := r*b.r-i*b.i;
+		float tr := r*b.r-i*b.i;
 		i := r*b.i+i*b.r;
+		r := tr;
 		return self;
 	}
 	action ureciprocal() returns Complex
