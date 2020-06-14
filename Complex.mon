@@ -47,28 +47,34 @@ event Complex
 	{
 		return Complex(abs*arg.cos(), abs*arg.sin());
 	}
+	//
 	static action conjugate(Complex a) returns Complex
 	{
 		return Complex(a.r, -a.i);
 	}
+	//
 	action uconjugate() returns Complex
 	{
 		i := -i;
 		return self;
 	}
 
+	//
 	static action add(Complex a, Complex b) returns Complex
 	{
 		return Complex(a.r+b.r, a.i+b.i);
 	}
+	//
 	static action subtract(Complex a, Complex b) returns Complex
 	{
 		return Complex(a.r-b.r, a.i-b.i);
 	}
+	//
 	static action multiply(Complex a, Complex b) returns Complex
 	{
 		return Complex(a.r*b.r-a.i*b.i, a.r*b.i+a.i*b.r);
 	}
+	//
 	static action divide(Complex a, Complex b) returns Complex
 	{
 		float denom := b.r*b.r+b.i*b.i;
@@ -90,14 +96,16 @@ event Complex
 			return b;
 		}
 	}
+	//
 	static action negate(Complex a) returns Complex
 	{
 		return Complex(-a.r, -a.i);
 	}
+	//
 	static action reciprocal(Complex a) returns Complex
 	{
 		float denom := a.r*a.r+a.i*a.i;
-		return Complex(a.r/denom, a.i/denom);
+		return Complex(a.r/denom, -a.i/denom);
 	}
 
 	action toValueString() returns string
@@ -113,12 +121,24 @@ event Complex
 
 	action formatFixed(integer dp) returns string
 	{
-		return r.formatFixed(dp)+" "+i.formatFixed(dp)+"i";
+		string spacer;
+		if i >= 0. {
+			spacer := "+";
+		} else {
+			spacer := "";
+		}
+		return r.formatFixed(dp)+spacer+i.formatFixed(dp)+"i";
 	}
 
 	action formatScientific(integer sf) returns string
 	{
-		return r.formatScientific(sf)+" "+i.formatScientific(sf)+"i";
+		string spacer;
+		if i >= 0. {
+			spacer := "+";
+		} else {
+			spacer := "";
+		}
+		return r.formatScientific(sf)+spacer+i.formatScientific(sf)+"i";
 	}
 
 	action abs() returns float
@@ -142,12 +162,14 @@ event Complex
 		return r.isInfinite() or i.isInfinite();
 	}
 
+	//
 	action unegate() returns Complex
 	{
 		r := -r;
 		i := -i;
 		return self;
 	}
+	//
 	action udivide(Complex b) returns Complex
 	{
 		float denom := b.r*b.r+b.i*b.i;
@@ -156,18 +178,21 @@ event Complex
 		r := tr;
 		return self;
 	}
+	//
 	action uadd(Complex b) returns Complex 
 	{
 		r := r+b.r;
 		i := i+b.i;
 		return self;
 	}
+	//
 	action usubtract(Complex b) returns Complex
 	{
 		r := r-b.r;
 		i := i-b.i;
 		return self;
 	}
+	//
 	action umultiply(Complex b) returns Complex
 	{
 		float tr := r*b.r-i*b.i;
@@ -175,11 +200,15 @@ event Complex
 		r := tr;
 		return self;
 	}
+	//
 	action ureciprocal() returns Complex
 	{
 		float denom := r*r+i*i;
-		return Complex(r/denom, i/denom);
+		r := r/denom;
+		i := -i/denom;
+		return self;
 	}
+	//
 	action uexp() returns Complex
 	{
 		float mul := r.exp();
@@ -191,12 +220,14 @@ event Complex
 	{
 		return i.atan2(r);
 	}
+	//
 	static action sqrt(Complex a) returns Complex
 	{
 		float sqrt := a.r.sqrt();
 		float arg := a.arg();
 		return Complex(sqrt*(arg/2.).cos(), sqrt*(arg/2.).sin());
 	}
+	//
 	static action ln(Complex a) returns Complex
 	{
 		if a.r = 0. and a.i = 0. then {
@@ -204,15 +235,18 @@ event Complex
 		}
 		return Complex(a.abs().ln(), a.arg());
 	}
+	//
 	static action pow(Complex a, Complex b) returns Complex
 	{
 		return Complex.exp(Complex.multiply(b, Complex.ln(a)));
 	}
+	//
 	static action exp(Complex a) returns Complex
 	{
 		float mul := a.r.exp();
 		return Complex(mul*a.i.cos(), mul*a.i.sin());
 	}
+	
 	static action divideReal(Complex a, float b) returns Complex
 	{
 		return Complex(a.r/b, a.i/b);

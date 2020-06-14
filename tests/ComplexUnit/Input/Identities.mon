@@ -1,0 +1,11 @@
+// test:
+// e^ipi=-1
+// e^ln(x)=x
+// tan(x)=sin(x)/cos(x)
+// x^y = e^yln(x)
+// c/b=a, ab=c
+// e^(a+b)=e^a.e^b
+// a+b=c, c-b=a
+// pow(sqrt(x), 2) = x
+// (-i).sqrt() = i
+// (cos x + i sin x)^n = cos(nx) + i sin(nx)

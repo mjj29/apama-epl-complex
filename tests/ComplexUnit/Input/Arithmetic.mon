@@ -24,7 +24,72 @@ monitor Arithmetic
 			Complex(2., 3.),
 			Complex(-7., 22.),
 			Complex(4., 5.));
+//		testbinary(
+//			"pow",
+//			...,
+//			...,
+//			...);
+		testunary(
+			"negate",
+			Complex(-2., 3.),
+			Complex(2., -3.));
+		testunary(
+			"conjugate",
+			Complex(2., -3.),
+			Complex(2., 3.));
+		testunary(
+			"reciprocal",
+			Complex.divide(Complex(1., 0.), Complex(2., 3.)),
+			Complex(2., 3.));
+//		testunary(
+//			"exp",
+//			...,
+//			...);
+//		testunary(
+//			"ln",
+//			...,
+//			...);
+//		testunary(
+//			"exp",
+//			...,
+//			...);
+//		testunary(
+//			"sqrt",
+//			...,
+//			...);
+
+// arg, abs
+// multiplyReal, divideReal, umultiplyReal, udivideReal
 	}
+	
+	action testunary(string name, 
+			Complex r,
+			Complex a)
+	{
+		Complex a2 := a.clone(); 
+		action<Complex> returns Complex staticAction := 
+			<action<Complex> returns Complex> (<any> r).getAction(name);
+		log name+" "+a.toValueString();
+		if not r = staticAction(a) {
+			log name+" failed" at ERROR;
+		}
+		action<> returns Complex instanceAction := 
+			<action<> returns Complex> (<any> a).getAction("u"+name);
+		log "u"+name+" "+a.toValueString();
+		Complex rv := instanceAction();
+		if not r = rv {
+			log "u"+name+" rv failed ("+r.toValueString()+" != "+rv.toValueString()+")" at ERROR;
+		}
+		action<> returns Complex instanceAction2 := 
+			<action<> returns Complex> (<any> a2).getAction("u"+name);
+		log "u"+name+" "+a2.toValueString();
+		Complex _ := instanceAction2();
+		if not r = a2 {
+			log "u"+name+" failed ("+r.toValueString()+" != "+a2.toValueString()+")" at ERROR;
+		}
+	}
+
+
 	
 	action testbinary(string name, 
 			Complex r,
@@ -53,4 +118,6 @@ monitor Arithmetic
 			log "u"+name+" failed ("+r.toValueString()+" != "+a2.toValueString()+")" at ERROR;
 		}
 	}
+
 }
+

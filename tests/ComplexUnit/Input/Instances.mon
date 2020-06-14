@@ -1,0 +1,11 @@
+/*
+Test:
+* constants
+* real/imag
+* from*
+* max/min
+* toValueString
+* format*
+* isNaN
+* bitEquals
+* isFinite/Infinite
