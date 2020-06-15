@@ -58,13 +58,17 @@ monitor Arithmetic
 //			...,
 //			...);
 
-		if not 5. = Complex(3., 4.).abs() {
-			log "abs fail" at ERROR;
-		}
-		if not (40000./5.).round() = (10000.*Complex(3., 4.).arg().sin()).round() {
-			log "arg fail: "+(40000./5.).round().toString()+" != "+(10000.*Complex(3., 4.).arg().sin()).round().toString() at ERROR;
+		assertEquals("abs", 5., Complex(3., 4.).abs());
+		assertEquals("arg", (40000./5.).round(), (10000.*Complex(3., 4.).arg().sin()).round());
 		}
 // multiplyReal, divideReal, umultiplyReal, udivideReal
+	}
+
+	action assertEquals(string name, any a, any b)
+	{
+		if not a = b {
+			log "assert fail "+name+": "+a.valueToString()+" != "+b.valueToString() at ERROR;
+		}
 	}
 	
 	action testunary(string name, 
@@ -75,23 +79,19 @@ monitor Arithmetic
 		action<Complex> returns Complex staticAction := 
 			<action<Complex> returns Complex> (<any> r).getAction(name);
 		log name+" "+a.toValueString();
-		if not r = staticAction(a) {
-			log name+" failed" at ERROR;
-		}
+		assertEquals(name, r, staticAction(a));
+		
 		action<> returns Complex instanceAction := 
 			<action<> returns Complex> (<any> a).getAction("u"+name);
 		log "u"+name+" "+a.toValueString();
 		Complex rv := instanceAction();
-		if not r = rv {
-			log "u"+name+" rv failed ("+r.toValueString()+" != "+rv.toValueString()+")" at ERROR;
-		}
+		assertEquals("u"+name+"rv", r, rv);
+
 		action<> returns Complex instanceAction2 := 
 			<action<> returns Complex> (<any> a2).getAction("u"+name);
 		log "u"+name+" "+a2.toValueString();
 		Complex _ := instanceAction2();
-		if not r = a2 {
-			log "u"+name+" failed ("+r.toValueString()+" != "+a2.toValueString()+")" at ERROR;
-		}
+		assertEquals("u"+name, r, a2);
 	}
 
 
@@ -105,23 +105,19 @@ monitor Arithmetic
 		action<Complex, Complex> returns Complex staticAction := 
 			<action<Complex, Complex> returns Complex> (<any> r).getAction(name);
 		log a.toValueString()+" "+name+" "+b.toValueString();
-		if not r = staticAction(a, b) {
-			log name+" failed" at ERROR;
-		}
+		assertEquals(name, r, staticAction(a));
+		
 		action<Complex> returns Complex instanceAction := 
 			<action<Complex> returns Complex> (<any> a).getAction("u"+name);
 		log a.toValueString()+" u"+name+" "+b.toValueString();
 		Complex rv := instanceAction(b);
-		if not r = rv {
-			log "u"+name+" rv failed ("+r.toValueString()+" != "+rv.toValueString()+")" at ERROR;
-		}
+		assertEquals("u"+name+"rv", r, rv);
+
 		action<Complex> returns Complex instanceAction2 := 
 			<action<Complex> returns Complex> (<any> a2).getAction("u"+name);
 		log a2.toValueString()+" u"+name+" "+b.toValueString();
 		Complex _ := instanceAction2(b);
-		if not r = a2 {
-			log "u"+name+" failed ("+r.toValueString()+" != "+a2.toValueString()+")" at ERROR;
-		}
+		assertEquals("u"+name, r, a2);
 	}
 
 }
