@@ -1,1 +1,32 @@
+using com.apamax.Complex;
 // test cos sin tan
+monitor Trig
+{
+	action onload()
+	{
+		Asserts.testunary(
+			"sin",
+			Complex(1., 0.),
+			Complex(float.PI/2., 0.));
+		Asserts.testunary(
+			"cos",
+			Complex(-1., 0.),
+			Complex(float.PI, 0.));
+		Asserts.testunary(
+			"tan",
+			Complex(1., 0.),
+			Complex(float.PI/4., 0.));
+		Asserts.testunary(
+			"sin",
+			Complex((1.).cosh(), 0.),
+			Complex(float.PI/2., 1.));
+		Asserts.testunary(
+			"cos",
+			Complex(0., -(1.).sinh()),
+			Complex(float.PI/2., 1.));
+		Asserts.testunary(
+			"tan",
+			Complex(0., (float.PI/2.).tanh()),
+			Complex(0., float.PI/2.));
+	}
+}

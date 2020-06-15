@@ -1,3 +1,4 @@
+using com.apamax.Complex;
 // test:
 // e^ipi=-1
 // e^ln(x)=x
@@ -7,5 +8,25 @@
 // e^(a+b)=e^a.e^b
 // a+b=c, c-b=a
 // pow(sqrt(x), 2) = x
-// (-i).sqrt() = i
+// (-1).sqrt() = i
 // (cos x + i sin x)^n = cos(nx) + i sin(nx)
+monitor Identities
+{
+	action onload()
+	{
+		Asserts.assertEquals("e^ipi=-1", Complex(0., float.PI).uexp(), Complex(-1., 0.));
+		Asserts.assertEquals("e^ln(z)=z", Complex(2., 3.).uln().uexp(), Complex(2., 3.));
+		Asserts.assertEquals("tan(z)=sin(z)/cos(z)", Complex.tan(Complex(2., 3.)),
+				Complex.divide(Complex.sin(Complex(2., 3.)), Complex.cos(Complex(2., 3.))));
+		Asserts.assertEquals("z^w=e^wlnz", 
+				Complex.pow(Complex(2., 3.), Complex(7.,1.)), 
+				Complex.multiply(Complex(7., 1.), Complex(2., 3.).uln()).uexp());
+		Asserts.assertEquals("w(z/w)=z", Complex(2., 1.), Complex(2., 1.).udivide(Complex(3., 2.)).umultiply(Complex(3., 2.)));
+		Asserts.assertEquals("w+(z-w)=z", Complex(2., 1.), Complex(2., 1.).usubtract(Complex(3., 2.)).uadd(Complex(3., 2.)));
+		Asserts.assertEquals("sqrt(z)^2=z", Complex.pow(Complex(2., 3.).usqrt(), Complex(2., 0.)), Complex(2., 3.));
+		Asserts.assertEquals("(-1).sqrt()=i", Complex.I(), Complex(-1., 0.).usqrt());
+		Asserts.assertEquals("(cos z + i sin z)^n = cos(nz) + i sin(nz)",
+				Complex.pow(Complex.cos(Complex(2., 2.)).uadd(Complex.sin(Complex(2., 2.)).umultiply(Complex.I())), Complex(4., 0.)),
+				Complex.cos(Complex(2., 2.).umultiplyReal(4.)).uadd(Complex.sin(Complex(2., 2.).umultiplyReal(4.)).umultiply(Complex.I())));
+	}
+}
