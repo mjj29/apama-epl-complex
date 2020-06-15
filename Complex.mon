@@ -33,7 +33,7 @@ event Complex
 	}
 	static action fromImaginaryFloat(float i) returns Complex
 	{
-		return Complex(i, 0.);
+		return Complex(0., i);
 	}
 	static action fromRealInteger(integer r) returns Complex
 	{
@@ -41,7 +41,7 @@ event Complex
 	}
 	static action fromImaginaryInteger(integer i) returns Complex
 	{
-		return Complex(i.toFloat(), 0.);
+		return Complex(0., i.toFloat());
 	}
 	static action fromPolar(float abs, float arg) returns Complex
 	{

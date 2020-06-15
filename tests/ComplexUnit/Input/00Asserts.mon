@@ -7,6 +7,9 @@ event Asserts
 			case integer: {
 				return a = <integer> b;
 			}
+			case boolean: {
+				return a = <boolean> b;
+			}
 			case float: {
 				if a < (<float> b)-tol or a > (<float> b)+tol {
 					return false;
