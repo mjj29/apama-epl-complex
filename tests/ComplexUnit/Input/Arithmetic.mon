@@ -58,7 +58,12 @@ monitor Arithmetic
 //			...,
 //			...);
 
-// arg, abs
+		if not 5. = Complex(3., 4.).abs() {
+			log "abs fail" at ERROR;
+		}
+		if not (40000./5.).round() = (10000.*Complex(3., 4.).arg().sin()).round() {
+			log "arg fail: "+(40000./5.).round().toString()+" != "+(10000.*Complex(3., 4.).arg().sin()).round().toString() at ERROR;
+		}
 // multiplyReal, divideReal, umultiplyReal, udivideReal
 	}
 	
