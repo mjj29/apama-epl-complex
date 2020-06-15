@@ -60,7 +60,6 @@ monitor Arithmetic
 
 		assertEquals("abs", 5., Complex(3., 4.).abs());
 		assertEquals("arg", (40000./5.).round(), (10000.*Complex(3., 4.).arg().sin()).round());
-		}
 // multiplyReal, divideReal, umultiplyReal, udivideReal
 	}
 
@@ -105,7 +104,7 @@ monitor Arithmetic
 		action<Complex, Complex> returns Complex staticAction := 
 			<action<Complex, Complex> returns Complex> (<any> r).getAction(name);
 		log a.toValueString()+" "+name+" "+b.toValueString();
-		assertEquals(name, r, staticAction(a));
+		assertEquals(name, r, staticAction(a, b));
 		
 		action<Complex> returns Complex instanceAction := 
 			<action<Complex> returns Complex> (<any> a).getAction("u"+name);
