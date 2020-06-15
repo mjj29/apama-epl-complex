@@ -14,72 +14,116 @@
 
 package com.apamax;
 
+/**
+ * Event that represents complex numbers in EPL.
+ *
+ * A Complex number can be created either from the real and imaginaries parts as floating point numbers, eg:
+<code>
+Complex c := Complex(3.1, 5.0); // 3.1 + 5i
+</code>
+ * or by using one of the static from functions on Complex, either convenience methods, or conversion from polar coordinates in radians:
+<code>
+Complex c := Complex.fromPolar(7.2, float.PI/2.0); // 7.2i
+</code>
+ *
+ * There are also a number of convenince functions to return certain constants an Complex numbers.
+ *
+ * You can inspect a Complex number using the real() and imag() functions, which return the real and imaginary parts respectively, and the arg() and abs() functions which calculate the polar versions of the Complex number.
+ *
+ * For operating on Complex numbers this class provides operations as both static and event instance actions. Typically these have both a static version and an instance version with the name prefixed by <tt>u</tt>. The static action creates and returns a new Complex number. The instance <tt>u</tt> form will modify the complex number and return a reference to itself, to be used in chains of function calls. In other words, if <tt>add(a, b)</tt> corresponds to <tt>a + b</tt>, then <tt>a.uadd(b)</tt> corresponds to <tt>a += b</tt>. This has been done for performance reasons.
+ */
 event Complex
 {
+	/** Returns Euler's number e, represented as a complex number. */
 	static action E() returns Complex { return Complex(float.E, 0.); }
+	/** Returns the constant pi, represented as a complex number. */
 	static action PI() returns Complex { return Complex(float.PI, 0.); }
+	/** Returns the square root of -1, i, represented as a complex number. */
 	static action I() returns Complex { return Complex(0., 1.); }
+	/** Returns 0, represented as a complex number. */
 	static action ZERO() returns Complex { return Complex(0., 0.); }
+	/** Returns 1, represented as a complex number. */
 	static action ONE() returns Complex { return Complex(1., 0.); }
+	/** Returns infinity + infinity*i, represented as a complex number. */
 	static action INFINITY() returns Complex { return Complex(float.INFINITY, float.INFINITY); }
+	/** Returns a Complex number which is not a number. */
 	static action NAN() returns Complex { return Complex(float.NAN, float.NAN); }
 
+	/** Returns the real part of this Complex number. */
 	action real() returns float { return r; }
+	/** Returns the imaginary part of this Complex number. */
 	action imag() returns float { return i; }
 
+	/** Creates a Complex number with the given float as the real part and 0 as the imaginary part. */
 	static action fromRealFloat(float r) returns Complex
 	{
 		return Complex(r, 0.);
 	}
+	/** Creates a Complex number with the given float as the imaginary part and 0 as the real part. */
 	static action fromImaginaryFloat(float i) returns Complex
 	{
 		return Complex(0., i);
 	}
+	/** Creates a Complex number with the given integer as the real part and 0 as the imaginary part. */
 	static action fromRealInteger(integer r) returns Complex
 	{
 		return Complex(r.toFloat(), 0.);
 	}
+	/** Creates a Complex number with the given integer as the imaginary part and 0 as the real part. */
 	static action fromImaginaryInteger(integer i) returns Complex
 	{
 		return Complex(0., i.toFloat());
 	}
+	/** Creates a Complex number from polar coordinates.
+	 * @return the Complex number abs*e<sup>i*arg</sup>
+	 */
 	static action fromPolar(float abs, float arg) returns Complex
 	{
 		return Complex(abs*arg.cos(), abs*arg.sin());
 	}
-	//
+	/** Return a new Complex number which is the complex conjugate of the argument. */
 	static action conjugate(Complex a) returns Complex
 	{
 		return Complex(a.r, -a.i);
 	}
-	//
+	/** Assign this to its complex conjugate and return self. */
 	action uconjugate() returns Complex
 	{
 		i := -i;
 		return self;
 	}
 
-	//
+	/**
+	 * Add two complex numbers and return a new Complex number with the result. 
+	 * @return a+b.
+	 */
 	static action add(Complex a, Complex b) returns Complex
 	{
 		return Complex(a.r+b.r, a.i+b.i);
 	}
-	//
+	/** Subtract two complex numbers and return a new Complex number with the result.
+	 * @return a-b.
+	 */
 	static action subtract(Complex a, Complex b) returns Complex
 	{
 		return Complex(a.r-b.r, a.i-b.i);
 	}
-	//
+	/** Multiply two complex numbers and return a new Complex number with the result.
+	 * @return a*b.
+	 */
 	static action multiply(Complex a, Complex b) returns Complex
 	{
 		return Complex(a.r*b.r-a.i*b.i, a.r*b.i+a.i*b.r);
 	}
-	//
+	/** Divide two complex numbers and return a new Complex number with the result.
+	 * @return a/b.
+	 */
 	static action divide(Complex a, Complex b) returns Complex
 	{
 		float denom := b.r*b.r+b.i*b.i;
 		return Complex((a.r*b.r+a.i*b.i)/denom, (b.r*a.i-a.r*b.i)/denom);
 	}
+	/** Return the larger of two Complex numbers. */
 	static action max(Complex a, Complex b) returns Complex
 	{
 		if (a.abs() > b.abs()) {
@@ -88,6 +132,7 @@ event Complex
 			return b;
 		}
 	}
+	/** Return the smaller of two Complex numbers. */
 	static action min(Complex a, Complex b) returns Complex
 	{
 		if (a.abs() < b.abs()) {
@@ -96,18 +141,26 @@ event Complex
 			return b;
 		}
 	}
-	//
+	/** Return a new Complex number which is the negation of the argument.
+	 * @return -a
+	 */
 	static action negate(Complex a) returns Complex
 	{
 		return Complex(-a.r, -a.i);
 	}
-	//
+	/** Return a new Complex number which is the reciprocal of the argument.
+	 * @return -1/a
+	 */
 	static action reciprocal(Complex a) returns Complex
 	{
 		float denom := a.r*a.r+a.i*a.i;
 		return Complex(a.r/denom, -a.i/denom);
 	}
 
+	/**
+	 * Return the Complex number as a string.
+	 * e.g. 0.3-4.5i
+	 */
 	action toValueString() returns string
 	{
 		if i.isNaN() or r.isNaN() {
@@ -132,6 +185,11 @@ event Complex
 		}
 	}
 
+	/**
+	 * Return the Complex number as a string with a fixed number of decimal places.
+	 * e.g. 0.30-4.51i
+	 * @param dp The number of decimal places in each of the real and imaginary parts.
+	 */
 	action formatFixed(integer dp) returns string
 	{
 		if i.isNaN() or r.isNaN() {
@@ -156,6 +214,11 @@ event Complex
 		}
 	}
 
+	/**
+	 * Return the Complex number as a string in scientific notation
+	 * e.g. 1.3e-2+5.6e10i
+	 * @param dp The number of significant figures in the real and imaginary parts.
+	 */
 	action formatScientific(integer sf) returns string
 	{
 		if i.isNaN() or r.isNaN() {
@@ -179,36 +242,42 @@ event Complex
 			return r.formatScientific(sf)+spacer+i.formatScientific(sf)+"i";
 		}
 	}
-
+	/** Return the magnitude of this Complex number.
+	 * @returns |a|
+	 */
 	action abs() returns float
 	{
 		return (r*r+i*i).sqrt();
 	}
+	/** Returns true if either part of this Complex number is not a number. */
 	action isNaN() returns boolean
 	{
 		return r.isNaN() or i.isNaN();
 	}
+	/** Returns true if both the real and imaginary parts of this Complex number are bit-equals to the real and imaginary parts of the argument. */
 	action bitEquals(Complex b) returns boolean
 	{
 		return r.bitEquals(b.r) and i.bitEquals(b.i);
 	}
+	/** Returns true if both parts of this Complex number are finite. */
 	action isFinite() returns boolean
 	{
 		return r.isFinite() and i.isFinite();
 	}
+	/** Returns true if either part of this Complex number is infinite. */
 	action isInfinite() returns boolean
 	{
 		return r.isInfinite() or i.isInfinite();
 	}
 
-	//
+	/** Set this Complex number to its own negation and return self. */
 	action unegate() returns Complex
 	{
 		r := -r;
 		i := -i;
 		return self;
 	}
-	//
+	/** Set this Complex number to be divided by the argument and return self. */
 	action udivide(Complex b) returns Complex
 	{
 		float denom := b.r*b.r+b.i*b.i;
@@ -217,21 +286,21 @@ event Complex
 		r := tr;
 		return self;
 	}
-	//
+	/** Set this Complex number to add the argument and return self. */
 	action uadd(Complex b) returns Complex 
 	{
 		r := r+b.r;
 		i := i+b.i;
 		return self;
 	}
-	//
+	/** Set this Complex number to subtract the argument and return self. */
 	action usubtract(Complex b) returns Complex
 	{
 		r := r-b.r;
 		i := i-b.i;
 		return self;
 	}
-	//
+	/** Set this Complex number to multiply by the argument and return self. */
 	action umultiply(Complex b) returns Complex
 	{
 		float tr := r*b.r-i*b.i;
@@ -239,7 +308,7 @@ event Complex
 		r := tr;
 		return self;
 	}
-	//
+	/** Set this Complex number to its own reciprocal and return self. */
 	action ureciprocal() returns Complex
 	{
 		float denom := r*r+i*i;
@@ -247,7 +316,7 @@ event Complex
 		i := -i/denom;
 		return self;
 	}
-	//
+	/** Set this Complex number it's exponent (e<sup>z</sup>) and return self. */
 	action uexp() returns Complex
 	{
 		float mul := r.exp();
@@ -255,11 +324,12 @@ event Complex
 		i := mul*i.sin();
 		return self;
 	}
+	/** Return the polar angle of this Complex number. */
 	action arg() returns float
 	{
 		return i.atan2(r);
 	}
-	//
+	/** Set this Complex number to its square root and return self. */
 	action usqrt() returns Complex
 	{
 		float sqrt := abs().sqrt();
@@ -268,14 +338,16 @@ event Complex
 		i := sqrt*(arg/2.).sin();
 		return self;
 	}
-	//
+	/** Returns the square root of the argument as a new Complex number.
+	 * @return a<sup>1/2</sup>
+	 */
 	static action sqrt(Complex a) returns Complex
 	{
 		float sqrt := a.abs().sqrt();
 		float arg := a.arg();
 		return Complex(sqrt*(arg/2.).cos(), sqrt*(arg/2.).sin());
 	}
-	//
+	/** Sets this Complex number to the natural logarithm of itself and return self. */
 	action uln() returns Complex
 	{
 		if r = 0. and i = 0. then {
@@ -288,7 +360,9 @@ event Complex
 		}
 		return self;
 	}
-	//
+	/** Return the natural log of the argument as a new Complex number.
+	 * @return ln(a)
+	 */
 	static action ln(Complex a) returns Complex
 	{
 		if a.r = 0. and a.i = 0. then {
@@ -296,7 +370,9 @@ event Complex
 		}
 		return Complex(a.abs().ln(), a.arg());
 	}
-	//
+	/** Return a Complex number raised to the power of a second Complex number as a new Complex number.
+	 * @return a<sup>b</sup>
+	 */
 	static action pow(Complex a, Complex b) returns Complex
 	{
 		Complex lna := Complex.ln(a);
@@ -306,33 +382,46 @@ event Complex
 		float mul := zrlr.exp()/zili.exp();
 		return Complex(mul*zilr_zrli.cos(), mul*zilr_zrli.sin());
 	}
-	//
+	/** Exponentiate the argument and return the result as a new Complex number.
+	 * @returns e<sup>a</sup>
+	 */
 	static action exp(Complex a) returns Complex
 	{
 		float mul := a.r.exp();
 		return Complex(mul*a.i.cos(), mul*a.i.sin());
 	}
-	
+	/** Divide the given complex number by a real divisor and return the result as a new Complex number.
+	 * @return a/b
+	 */
 	static action divideReal(Complex a, float b) returns Complex
 	{
 		return Complex(a.r/b, a.i/b);
 	}
+	/** Multiply the given complex number by a real divisor and return the result as a new Complex number.
+	 * @return a*b
+	 */
 	static action multiplyReal(Complex a, float b) returns Complex
 	{
 		return Complex(a.r*b, a.i*b);
 	}
+	/** Set this Complex number to be divided by the real argument and return self. */
 	action udivideReal(float b) returns Complex
 	{
 		r := r/b;
 		i := i/b;
 		return self;
 	}
+	/** Set this Complex number to be multiplied by the real argument and return self. */
 	action umultiplyReal(float b) returns Complex
 	{
 		r := r*b;
 		i := i*b;
 		return self;
 	}
+	/**
+	 * Returns the cosine of the argument as a new Complex number.
+	 * @return cos(a)
+	 */
 	static action cos(Complex a) returns Complex
 	{
 		Complex res := Complex.multiply(a, Complex.I());
@@ -340,6 +429,10 @@ event Complex
 		_ := res.uadd(Complex.reciprocal(res));
 		return res.udivideReal(2.0);
 	}
+	/**
+	 * Returns the sine of the argument as a new Complex number.
+	 * @return sin(a)
+	 */
 	static action sin(Complex a) returns Complex
 	{
 		Complex res := Complex.multiply(a, Complex.I());
@@ -347,6 +440,10 @@ event Complex
 		_ := res.usubtract(Complex.reciprocal(res));
 		return res.udivide(Complex(0., 2.));
 	}
+	/**
+	 * Returns the tangent of the argument as a new Complex number.
+	 * @return tan(a)
+	 */
 	static action tan(Complex a) returns Complex
 	{
 		Complex i := Complex.I();

@@ -1,0 +1,946 @@
+<HTML><!-- saved from url=(0014)about:internet -->
+
+
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Complex</TITLE>
+<META NAME="keywords" CONTENT="Complex&nbsp;event">
+<LINK REL="stylesheet" TYPE="text/css" HREF="stylesheet.css" TITLE="Style">
+<SCRIPT type="text/javascript">function windowTitle()
+          {
+          parent.document.title="Complex";
+          }
+          </SCRIPT>
+<NOSCRIPT></NOSCRIPT>
+</HEAD>
+<BODY BGCOLOR="white" onload="windowTitle();">
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2"><A target="_top" HREF="../../index.html?com/apamax/Complex.html"><B>FRAMES</B></A>  &nbsp;
+
+            &nbsp;<A target="_top" HREF="Complex.html"><B>NO FRAMES</B></A>  &nbsp;
+            &nbsp;<SCRIPT type="text/javascript"></SCRIPT>
+<NOSCRIPT>
+<A HREF="../../alltypes-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+</FONT></TD>
+</TR>
+<TR>
+<TD COLSPAN="2" BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+<TR ALIGN="center" VALIGN="top">
+<TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;
+              </TD><TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1"><A HREF="../..//com/apamax/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A></TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;
+              </TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT>&nbsp;
+                </A></TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1" WIDTH="100%" ALIGN="RIGHT"></TD>
+</TR>
+</TABLE>
+</TD><TD ALIGN="right" VALIGN="top" ROWSPAN="3"><EM></EM></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">SUMMARY:&nbsp;IMPORT&nbsp;|&nbsp;CONSTANT&nbsp;|&nbsp;MEMBER&nbsp;|&nbsp;<A HREF="#action_summary">ACTION</A></FONT></TD><TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">DETAIL:&nbsp;IMPORT&nbsp;|&nbsp;CONSTANT&nbsp;|&nbsp;MEMBER&nbsp;|&nbsp;<A HREF="#action_detail">ACTION</A></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+<H2>
+<FONT SIZE="-1">com.apamax</FONT>
+<BR>Event Complex</H2>
+<HR>Event that represents complex numbers in EPL.<br>
+<br> A Complex number can be created either from the real and imaginaries parts as floating point numbers, eg: <pre><br>Complex c := Complex(3.1, 5.0); // 3.1 + 5i<br></pre> or by using one of the static from functions on Complex, either convenience methods, or conversion from polar coordinates in radians: <pre><br>Complex c := Complex.fromPolar(7.2, float.PI/2.0); // 7.2i<br></pre> There are also a number of convenince functions to return certain constants an Complex numbers.<br>
+<br> You can inspect a Complex number using the real() and imag() functions, which return the real and imaginary parts respectively, and the arg() and abs() functions which calculate the polar versions of the Complex number.<br>
+<br> For operating on Complex numbers this class provides operations as both static and event instance actions. Typically these have both a static version and an instance version with the name prefixed by <tt>u</tt>. The static action creates and returns a new Complex number. The instance <tt>u</tt> form will modify the complex number and return a reference to itself, to be used in chains of function calls. In other words, if <tt>add(a, b)</tt> corresponds to <tt>a + b</tt>, then <tt>a.uadd(b)</tt> corresponds to <tt>a += b</tt>. This has been done for performance reasons.<HR>
+<A NAME="action_summary"></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2"><B>Action summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;float</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#abs()">abs</A></B>()</CODE>
+<br>
+<br>Return the magnitude of this Complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#add()">add</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</CODE>
+<br>
+<br>Add two complex numbers and return a new Complex number with the result.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;float</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#arg()">arg</A></B>()</CODE>
+<br>
+<br>Return the polar angle of this Complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;boolean</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#bitEquals()">bitEquals</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</CODE>
+<br>
+<br>Returns true if both the real and imaginary parts of this Complex number are bit-equals to the real and imaginary parts of the argument.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#conjugate()">conjugate</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</CODE>
+<br>
+<br>Return a new Complex number which is the complex conjugate of the argument.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#cos()">cos</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</CODE>
+<br>
+<br>Returns the cosine of the argument as a new Complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#divide()">divide</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</CODE>
+<br>
+<br>Divide two complex numbers and return a new Complex number with the result.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#divideReal()">divideReal</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;float&nbsp;b)</CODE>
+<br>
+<br>Divide the given complex number by a real divisor and return the result as a new Complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#E()">E</A></B>()</CODE>
+<br>
+<br>Returns Euler's number e, represented as a complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#exp()">exp</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</CODE>
+<br>
+<br>Exponentiate the argument and return the result as a new Complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;string</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#formatFixed()">formatFixed</A></B>(integer&nbsp;dp)</CODE>
+<br>
+<br>Return the Complex number as a string with a fixed number of decimal places. e.g. 0.30-4.51i</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;string</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#formatScientific()">formatScientific</A></B>(integer&nbsp;sf)</CODE>
+<br>
+<br>Return the Complex number as a string in scientific notation e.g. 1.3e-2+5.6e10i</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#fromImaginaryFloat()">fromImaginaryFloat</A></B>(float&nbsp;i)</CODE>
+<br>
+<br>Creates a Complex number with the given float as the imaginary part and 0 as the real part.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#fromImaginaryInteger()">fromImaginaryInteger</A></B>(integer&nbsp;i)</CODE>
+<br>
+<br>Creates a Complex number with the given integer as the imaginary part and 0 as the real part.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#fromPolar()">fromPolar</A></B>(float&nbsp;abs,&nbsp;float&nbsp;arg)</CODE>
+<br>
+<br>Creates a Complex number from polar coordinates.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#fromRealFloat()">fromRealFloat</A></B>(float&nbsp;r)</CODE>
+<br>
+<br>Creates a Complex number with the given float as the real part and 0 as the imaginary part.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#fromRealInteger()">fromRealInteger</A></B>(integer&nbsp;r)</CODE>
+<br>
+<br>Creates a Complex number with the given integer as the real part and 0 as the imaginary part.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#I()">I</A></B>()</CODE>
+<br>
+<br>Returns the square root of -1, i, represented as a complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;float</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#imag()">imag</A></B>()</CODE>
+<br>
+<br>Returns the imaginary part of this Complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#INFINITY()">INFINITY</A></B>()</CODE>
+<br>
+<br>Returns infinity + infinity*i, represented as a complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;boolean</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#isFinite()">isFinite</A></B>()</CODE>
+<br>
+<br>Returns true if both parts of this Complex number are finite.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;boolean</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#isInfinite()">isInfinite</A></B>()</CODE>
+<br>
+<br>Returns true if either part of this Complex number is infinite.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;boolean</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#isNaN()">isNaN</A></B>()</CODE>
+<br>
+<br>Returns true if either part of this Complex number is not a number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#ln()">ln</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</CODE>
+<br>
+<br>Return the natural log of the argument as a new Complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#max()">max</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</CODE>
+<br>
+<br>Return the larger of two Complex numbers.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#min()">min</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</CODE>
+<br>
+<br>Return the smaller of two Complex numbers.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#multiply()">multiply</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</CODE>
+<br>
+<br>Multiply two complex numbers and return a new Complex number with the result.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#multiplyReal()">multiplyReal</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;float&nbsp;b)</CODE>
+<br>
+<br>Multiply the given complex number by a real divisor and return the result as a new Complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#NAN()">NAN</A></B>()</CODE>
+<br>
+<br>Returns a Complex number which is not a number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#negate()">negate</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</CODE>
+<br>
+<br>Return a new Complex number which is the negation of the argument.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#ONE()">ONE</A></B>()</CODE>
+<br>
+<br>Returns 1, represented as a complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#PI()">PI</A></B>()</CODE>
+<br>
+<br>Returns the constant pi, represented as a complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#pow()">pow</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</CODE>
+<br>
+<br>Return a Complex number raised to the power of a second Complex number as a new Complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;float</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#real()">real</A></B>()</CODE>
+<br>
+<br>Returns the real part of this Complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#reciprocal()">reciprocal</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</CODE>
+<br>
+<br>Return a new Complex number which is the reciprocal of the argument.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#sin()">sin</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</CODE>
+<br>
+<br>Returns the sine of the argument as a new Complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#sqrt()">sqrt</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</CODE>
+<br>
+<br>Returns the square root of the argument as a new Complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#subtract()">subtract</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</CODE>
+<br>
+<br>Subtract two complex numbers and return a new Complex number with the result.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#tan()">tan</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</CODE>
+<br>
+<br>Returns the tangent of the argument as a new Complex number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;string</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#toValueString()">toValueString</A></B>()</CODE>
+<br>
+<br>Return the Complex number as a string. e.g. 0.3-4.5i</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#uadd()">uadd</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</CODE>
+<br>
+<br>Set this Complex number to add the argument and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#uconjugate()">uconjugate</A></B>()</CODE>
+<br>
+<br>Assign this to its complex conjugate and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#udivide()">udivide</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</CODE>
+<br>
+<br>Set this Complex number to be divided by the argument and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#udivideReal()">udivideReal</A></B>(float&nbsp;b)</CODE>
+<br>
+<br>Set this Complex number to be divided by the real argument and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#uexp()">uexp</A></B>()</CODE>
+<br>
+<br>Set this Complex number it's exponent (e<sup>z</sup>) and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#uln()">uln</A></B>()</CODE>
+<br>
+<br>Sets this Complex number to the natural logarithm of itself and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#umultiply()">umultiply</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</CODE>
+<br>
+<br>Set this Complex number to multiply by the argument and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#umultiplyReal()">umultiplyReal</A></B>(float&nbsp;b)</CODE>
+<br>
+<br>Set this Complex number to be multiplied by the real argument and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#unegate()">unegate</A></B>()</CODE>
+<br>
+<br>Set this Complex number to its own negation and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#ureciprocal()">ureciprocal</A></B>()</CODE>
+<br>
+<br>Set this Complex number to its own reciprocal and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#usqrt()">usqrt</A></B>()</CODE>
+<br>
+<br>Set this Complex number to its square root and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Complex.html#usubtract()">usubtract</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</CODE>
+<br>
+<br>Set this Complex number to subtract the argument and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Complex.html#ZERO()">ZERO</A></B>()</CODE>
+<br>
+<br>Returns 0, represented as a complex number.</TD>
+</TR>
+</TABLE>&nbsp;<A NAME="action_detail"></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2"><B>Action detail</B></FONT></TH>
+</TR>
+</TABLE>
+<A NAME="abs()"></A>
+<H3>abs</H3>
+<PRE>float&nbsp;<B>abs</B>()</PRE>Return the magnitude of this Complex number.<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>|a|</DD>
+</DL>
+<HR>
+<A NAME="add()"></A>
+<H3>add</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>add</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</PRE>Add two complex numbers and return a new Complex number with the result.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>a+b.</DD>
+</DL>
+<HR>
+<A NAME="arg()"></A>
+<H3>arg</H3>
+<PRE>float&nbsp;<B>arg</B>()</PRE>Return the polar angle of this Complex number.<HR>
+<A NAME="bitEquals()"></A>
+<H3>bitEquals</H3>
+<PRE>boolean&nbsp;<B>bitEquals</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</PRE>Returns true if both the real and imaginary parts of this Complex number are bit-equals to the real and imaginary parts of the argument.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="conjugate()"></A>
+<H3>conjugate</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>conjugate</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</PRE>Return a new Complex number which is the complex conjugate of the argument.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="cos()"></A>
+<H3>cos</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>cos</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</PRE>Returns the cosine of the argument as a new Complex number.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>cos(a)</DD>
+</DL>
+<HR>
+<A NAME="divide()"></A>
+<H3>divide</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>divide</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</PRE>Divide two complex numbers and return a new Complex number with the result.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>a/b.</DD>
+</DL>
+<HR>
+<A NAME="divideReal()"></A>
+<H3>divideReal</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>divideReal</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;float&nbsp;b)</PRE>Divide the given complex number by a real divisor and return the result as a new Complex number.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>a/b</DD>
+</DL>
+<HR>
+<A NAME="E()"></A>
+<H3>E</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>E</B>()</PRE>Returns Euler's number e, represented as a complex number.<HR>
+<A NAME="exp()"></A>
+<H3>exp</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>exp</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</PRE>Exponentiate the argument and return the result as a new Complex number.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>e<sup>a</sup></DD>
+</DL>
+<HR>
+<A NAME="formatFixed()"></A>
+<H3>formatFixed</H3>
+<PRE>string&nbsp;<B>formatFixed</B>(integer&nbsp;dp)</PRE>Return the Complex number as a string with a fixed number of decimal places. e.g. 0.30-4.51i<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>dp</tt>&nbsp;-&nbsp;The number of decimal places in each of the real and imaginary parts.</DD>
+</DL>
+<HR>
+<A NAME="formatScientific()"></A>
+<H3>formatScientific</H3>
+<PRE>string&nbsp;<B>formatScientific</B>(integer&nbsp;sf)</PRE>Return the Complex number as a string in scientific notation e.g. 1.3e-2+5.6e10i<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>sf</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="fromImaginaryFloat()"></A>
+<H3>fromImaginaryFloat</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>fromImaginaryFloat</B>(float&nbsp;i)</PRE>Creates a Complex number with the given float as the imaginary part and 0 as the real part.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>i</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="fromImaginaryInteger()"></A>
+<H3>fromImaginaryInteger</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>fromImaginaryInteger</B>(integer&nbsp;i)</PRE>Creates a Complex number with the given integer as the imaginary part and 0 as the real part.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>i</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="fromPolar()"></A>
+<H3>fromPolar</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>fromPolar</B>(float&nbsp;abs,&nbsp;float&nbsp;arg)</PRE>Creates a Complex number from polar coordinates.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>abs</tt>
+</DD>
+<DD>
+<tt>arg</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>the Complex number abs*e<sup>i*arg</sup></DD>
+</DL>
+<HR>
+<A NAME="fromRealFloat()"></A>
+<H3>fromRealFloat</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>fromRealFloat</B>(float&nbsp;r)</PRE>Creates a Complex number with the given float as the real part and 0 as the imaginary part.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>r</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="fromRealInteger()"></A>
+<H3>fromRealInteger</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>fromRealInteger</B>(integer&nbsp;r)</PRE>Creates a Complex number with the given integer as the real part and 0 as the imaginary part.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>r</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="I()"></A>
+<H3>I</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>I</B>()</PRE>Returns the square root of -1, i, represented as a complex number.<HR>
+<A NAME="imag()"></A>
+<H3>imag</H3>
+<PRE>float&nbsp;<B>imag</B>()</PRE>Returns the imaginary part of this Complex number.<HR>
+<A NAME="INFINITY()"></A>
+<H3>INFINITY</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>INFINITY</B>()</PRE>Returns infinity + infinity*i, represented as a complex number.<HR>
+<A NAME="isFinite()"></A>
+<H3>isFinite</H3>
+<PRE>boolean&nbsp;<B>isFinite</B>()</PRE>Returns true if both parts of this Complex number are finite.<HR>
+<A NAME="isInfinite()"></A>
+<H3>isInfinite</H3>
+<PRE>boolean&nbsp;<B>isInfinite</B>()</PRE>Returns true if either part of this Complex number is infinite.<HR>
+<A NAME="isNaN()"></A>
+<H3>isNaN</H3>
+<PRE>boolean&nbsp;<B>isNaN</B>()</PRE>Returns true if either part of this Complex number is not a number.<HR>
+<A NAME="ln()"></A>
+<H3>ln</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>ln</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</PRE>Return the natural log of the argument as a new Complex number.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>ln(a)</DD>
+</DL>
+<HR>
+<A NAME="max()"></A>
+<H3>max</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>max</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</PRE>Return the larger of two Complex numbers.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="min()"></A>
+<H3>min</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>min</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</PRE>Return the smaller of two Complex numbers.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="multiply()"></A>
+<H3>multiply</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>multiply</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</PRE>Multiply two complex numbers and return a new Complex number with the result.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>a*b.</DD>
+</DL>
+<HR>
+<A NAME="multiplyReal()"></A>
+<H3>multiplyReal</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>multiplyReal</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;float&nbsp;b)</PRE>Multiply the given complex number by a real divisor and return the result as a new Complex number.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>a*b</DD>
+</DL>
+<HR>
+<A NAME="NAN()"></A>
+<H3>NAN</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>NAN</B>()</PRE>Returns a Complex number which is not a number.<HR>
+<A NAME="negate()"></A>
+<H3>negate</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>negate</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</PRE>Return a new Complex number which is the negation of the argument.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>-a</DD>
+</DL>
+<HR>
+<A NAME="ONE()"></A>
+<H3>ONE</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>ONE</B>()</PRE>Returns 1, represented as a complex number.<HR>
+<A NAME="PI()"></A>
+<H3>PI</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>PI</B>()</PRE>Returns the constant pi, represented as a complex number.<HR>
+<A NAME="pow()"></A>
+<H3>pow</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>pow</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</PRE>Return a Complex number raised to the power of a second Complex number as a new Complex number.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>a<sup>b</sup></DD>
+</DL>
+<HR>
+<A NAME="real()"></A>
+<H3>real</H3>
+<PRE>float&nbsp;<B>real</B>()</PRE>Returns the real part of this Complex number.<HR>
+<A NAME="reciprocal()"></A>
+<H3>reciprocal</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>reciprocal</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</PRE>Return a new Complex number which is the reciprocal of the argument.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>-1/a</DD>
+</DL>
+<HR>
+<A NAME="sin()"></A>
+<H3>sin</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>sin</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</PRE>Returns the sine of the argument as a new Complex number.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>sin(a)</DD>
+</DL>
+<HR>
+<A NAME="sqrt()"></A>
+<H3>sqrt</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>sqrt</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</PRE>Returns the square root of the argument as a new Complex number.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>a<sup>1/2</sup></DD>
+</DL>
+<HR>
+<A NAME="subtract()"></A>
+<H3>subtract</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>subtract</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</PRE>Subtract two complex numbers and return a new Complex number with the result.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>a-b.</DD>
+</DL>
+<HR>
+<A NAME="tan()"></A>
+<H3>tan</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>tan</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;a)</PRE>Returns the tangent of the argument as a new Complex number.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>tan(a)</DD>
+</DL>
+<HR>
+<A NAME="toValueString()"></A>
+<H3>toValueString</H3>
+<PRE>string&nbsp;<B>toValueString</B>()</PRE>Return the Complex number as a string. e.g. 0.3-4.5i<HR>
+<A NAME="uadd()"></A>
+<H3>uadd</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;<B>uadd</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</PRE>Set this Complex number to add the argument and return self.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="uconjugate()"></A>
+<H3>uconjugate</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;<B>uconjugate</B>()</PRE>Assign this to its complex conjugate and return self.<HR>
+<A NAME="udivide()"></A>
+<H3>udivide</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;<B>udivide</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</PRE>Set this Complex number to be divided by the argument and return self.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="udivideReal()"></A>
+<H3>udivideReal</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;<B>udivideReal</B>(float&nbsp;b)</PRE>Set this Complex number to be divided by the real argument and return self.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="uexp()"></A>
+<H3>uexp</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;<B>uexp</B>()</PRE>Set this Complex number it's exponent (e<sup>z</sup>) and return self.<HR>
+<A NAME="uln()"></A>
+<H3>uln</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;<B>uln</B>()</PRE>Sets this Complex number to the natural logarithm of itself and return self.<HR>
+<A NAME="umultiply()"></A>
+<H3>umultiply</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;<B>umultiply</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</PRE>Set this Complex number to multiply by the argument and return self.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="umultiplyReal()"></A>
+<H3>umultiplyReal</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;<B>umultiplyReal</B>(float&nbsp;b)</PRE>Set this Complex number to be multiplied by the real argument and return self.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="unegate()"></A>
+<H3>unegate</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;<B>unegate</B>()</PRE>Set this Complex number to its own negation and return self.<HR>
+<A NAME="ureciprocal()"></A>
+<H3>ureciprocal</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;<B>ureciprocal</B>()</PRE>Set this Complex number to its own reciprocal and return self.<HR>
+<A NAME="usqrt()"></A>
+<H3>usqrt</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;<B>usqrt</B>()</PRE>Set this Complex number to its square root and return self.<HR>
+<A NAME="usubtract()"></A>
+<H3>usubtract</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;<B>usubtract</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;b)</PRE>Set this Complex number to subtract the argument and return self.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="ZERO()"></A>
+<H3>ZERO</H3>
+<PRE>
+<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;static <B>ZERO</B>()</PRE>Returns 0, represented as a complex number.<HR>
+<HR>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2"><A target="_top" HREF="../../index.html?com/apamax/Complex.html"><B>FRAMES</B></A>  &nbsp;
+
+            &nbsp;<A target="_top" HREF="Complex.html"><B>NO FRAMES</B></A>  &nbsp;
+            &nbsp;<SCRIPT type="text/javascript"></SCRIPT>
+<NOSCRIPT>
+<A HREF="../../alltypes-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+</FONT></TD>
+</TR>
+<TR>
+<TD COLSPAN="2" BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+<TR ALIGN="center" VALIGN="top">
+<TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;
+              </TD><TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1"><A HREF="../..//com/apamax/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A></TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;
+              </TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT>&nbsp;
+                </A></TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1" WIDTH="100%" ALIGN="RIGHT"></TD>
+</TR>
+</TABLE>
+</TD><TD ALIGN="right" VALIGN="top" ROWSPAN="3"><EM></EM></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">SUMMARY:&nbsp;IMPORT&nbsp;|&nbsp;CONSTANT&nbsp;|&nbsp;MEMBER&nbsp;|&nbsp;<A HREF="#action_summary">ACTION</A></FONT></TD><TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">DETAIL:&nbsp;IMPORT&nbsp;|&nbsp;CONSTANT&nbsp;|&nbsp;MEMBER&nbsp;|&nbsp;<A HREF="#action_detail">ACTION</A></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+</BODY>
+</HTML>
