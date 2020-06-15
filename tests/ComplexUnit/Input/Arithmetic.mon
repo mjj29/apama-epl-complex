@@ -31,7 +31,7 @@ monitor Arithmetic
 			Complex(3., 0.));
 		Asserts.testbinary(
 			"pow",
-			Complex(45.2998666, 36.807999),
+			Complex(-18.93471069, 5.806886279),
 			Complex(5., 3.),
 			Complex(2., 1.));
 		Asserts.testunary(

@@ -110,35 +110,74 @@ event Complex
 
 	action toValueString() returns string
 	{
-		string spacer;
-		if i >= 0. {
-			spacer := "+";
-		} else {
-			spacer := "";
+		if i.isNaN() or r.isNaN() {
+			return "NaN";
 		}
-		return r.toString()+spacer+i.toString()+"i";
+		if 0. = i {
+			if 0. = r {
+				return "0";
+			} else {
+				return r.toString();
+			}
+		} else if 0. = r {
+			return i.toString()+"i";
+		} else {
+			string spacer;
+			if i >= 0. {
+				spacer := "+";
+			} else {
+				spacer := "";
+			}
+			return r.toString()+spacer+i.toString()+"i";
+		}
 	}
 
 	action formatFixed(integer dp) returns string
 	{
-		string spacer;
-		if i >= 0. {
-			spacer := "+";
-		} else {
-			spacer := "";
+		if i.isNaN() or r.isNaN() {
+			return "NaN";
 		}
-		return r.formatFixed(dp)+spacer+i.formatFixed(dp)+"i";
+		if 0. = i {
+			if 0. = r {
+				return "0";
+			} else {
+				return r.formatFixed(dp);
+			}
+		} else if 0. = r {
+			return i.formatFixed(dp)+"i";
+		} else {
+			string spacer;
+			if i >= 0. {
+				spacer := "+";
+			} else {
+				spacer := "";
+			}
+			return r.formatFixed(dp)+spacer+i.formatFixed(dp)+"i";
+		}
 	}
 
 	action formatScientific(integer sf) returns string
 	{
-		string spacer;
-		if i >= 0. {
-			spacer := "+";
-		} else {
-			spacer := "";
+		if i.isNaN() or r.isNaN() {
+			return "NaN";
 		}
-		return r.formatScientific(sf)+spacer+i.formatScientific(sf)+"i";
+		if 0. = i {
+			if 0. = r {
+				return "0";
+			} else {
+				return r.formatScientific(sf);
+			}
+		} else if 0. = r {
+			return i.formatScientific(sf)+"i";
+		} else {
+			string spacer;
+			if i >= 0. {
+				spacer := "+";
+			} else {
+				spacer := "";
+			}
+			return r.formatScientific(sf)+spacer+i.formatScientific(sf)+"i";
+		}
 	}
 
 	action abs() returns float
@@ -223,7 +262,7 @@ event Complex
 	//
 	action usqrt() returns Complex
 	{
-		float sqrt := r.sqrt();
+		float sqrt := abs().sqrt();
 		float arg := self.arg();
 		r := sqrt*(arg/2.).cos(); 
 		i := sqrt*(arg/2.).sin();
@@ -232,7 +271,7 @@ event Complex
 	//
 	static action sqrt(Complex a) returns Complex
 	{
-		float sqrt := a.r.sqrt();
+		float sqrt := a.abs().sqrt();
 		float arg := a.arg();
 		return Complex(sqrt*(arg/2.).cos(), sqrt*(arg/2.).sin());
 	}
@@ -260,7 +299,12 @@ event Complex
 	//
 	static action pow(Complex a, Complex b) returns Complex
 	{
-		return Complex.exp(Complex.multiply(b, Complex.ln(a)));
+		Complex lna := Complex.ln(a);
+		float zrlr := b.r*lna.r;
+		float zili := b.i*lna.i;
+		float zilr_zrli := b.i*lna.r+b.r*lna.i;
+		float mul := zrlr.exp()/zili.exp();
+		return Complex(mul*zilr_zrli.cos(), mul*zilr_zrli.sin());
 	}
 	//
 	static action exp(Complex a) returns Complex
@@ -291,27 +335,29 @@ event Complex
 	}
 	static action cos(Complex a) returns Complex
 	{
-		Complex res := Complex.multiply(a, Complex(0., 1.));
+		Complex res := Complex.multiply(a, Complex.I());
 		Complex _ := res.uexp();
 		_ := res.uadd(Complex.reciprocal(res));
 		return res.udivideReal(2.0);
 	}
 	static action sin(Complex a) returns Complex
 	{
-		Complex res := Complex.multiply(a, Complex(0., 1.));
+		Complex res := Complex.multiply(a, Complex.I());
 		Complex _ := res.uexp();
-		_ := res.uadd(Complex.reciprocal(res));
+		_ := res.usubtract(Complex.reciprocal(res));
 		return res.udivide(Complex(0., 2.));
 	}
 	static action tan(Complex a) returns Complex
 	{
-		Complex res := Complex.multiply(a, Complex(0., 1.));
+		Complex i := Complex.I();
+		Complex res := Complex.multiply(a, i);
 		Complex _ := res.umultiplyReal(2.0);
 		_ := res.uexp();
 		Complex div := res.clone();
 		res.r := res.r-1.;
+		_ := res.umultiply(i);
 		div.r := div.r+1.;
-		return res.udivide(div);
+		return res.udivide(div).unegate();
 	}
 
 	/** @private */

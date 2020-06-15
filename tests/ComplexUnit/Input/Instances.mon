@@ -32,9 +32,9 @@ monitor Instances
 		Asserts.assertEquals("toStringH", "NaN", Complex.NAN().toValueString());
 		Asserts.assertEquals("toStringI", "NaN", Complex(float.NAN, 0.).toValueString());
 		Asserts.assertEquals("toStringJ", "NaN", Complex(0., float.NAN).toValueString());
-		Asserts.assertEquals("toStringH", "Inf+Infi", Complex.INFINITY().toValueString());
-		Asserts.assertEquals("toStringI", "Inf", Complex(float.INFINITY, 0.).toValueString());
-		Asserts.assertEquals("toStringJ", "Infi", Complex(0., float.INFINITY).toValueString());
+		Asserts.assertEquals("toStringH", "Infinity+Infinityi", Complex.INFINITY().toValueString());
+		Asserts.assertEquals("toStringI", "Infinity", Complex(float.INFINITY, 0.).toValueString());
+		Asserts.assertEquals("toStringJ", "Infinityi", Complex(0., float.INFINITY).toValueString());
 
 		Asserts.assertEquals("formatFixedA", "3.14+3.14i", Complex(float.PI, float.PI).formatFixed(2));
 		Asserts.assertEquals("formatFixedB", "3.14", Complex(float.PI, 0.).formatFixed(2));
