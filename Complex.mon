@@ -221,11 +221,33 @@ event Complex
 		return i.atan2(r);
 	}
 	//
+	action usqrt() returns Complex
+	{
+		float sqrt := r.sqrt();
+		float arg := self.arg();
+		r := sqrt*(arg/2.).cos(); 
+		i := sqrt*(arg/2.).sin();
+		return self;
+	}
+	//
 	static action sqrt(Complex a) returns Complex
 	{
 		float sqrt := a.r.sqrt();
 		float arg := a.arg();
 		return Complex(sqrt*(arg/2.).cos(), sqrt*(arg/2.).sin());
+	}
+	//
+	action uln() returns Complex
+	{
+		if r = 0. and i = 0. then {
+			r := float.NAN;
+			i := float.NAN;
+		} else {
+			float arg := self.arg();
+			r := abs().ln();
+			i := arg;
+		}
+		return self;
 	}
 	//
 	static action ln(Complex a) returns Complex

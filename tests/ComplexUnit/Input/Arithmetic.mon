@@ -4,120 +4,87 @@ monitor Arithmetic
 {
 	action onload()
 	{
-		testbinary(
+		Asserts.testbinary(
 			"add",
 			Complex(5., 6.),
 			Complex(2., 4.),
 			Complex(3., 2.));
-		testbinary(
+		Asserts.testbinary(
 			"subtract",
 			Complex(5., -6.),
 			Complex(12., 7.),
 			Complex(7., 13.));
-		testbinary(
+		Asserts.testbinary(
 			"multiply",
 			Complex(-7., 22.),
 			Complex(2., 3.),
 			Complex(4., 5.));
-		testbinary(
+		Asserts.testbinary(
 			"divide",
 			Complex(2., 3.),
 			Complex(-7., 22.),
 			Complex(4., 5.));
-//		testbinary(
-//			"pow",
-//			...,
-//			...,
-//			...);
-		testunary(
+		Asserts.testbinary(
+			"pow",
+			Complex(8., 0.),
+			Complex(2., 0.),
+			Complex(3., 0.));
+		Asserts.testbinary(
+			"pow",
+			Complex(45.2998666, 36.807999),
+			Complex(5., 3.),
+			Complex(2., 1.));
+		Asserts.testunary(
 			"negate",
 			Complex(-2., 3.),
 			Complex(2., -3.));
-		testunary(
+		Asserts.testunary(
 			"conjugate",
 			Complex(2., -3.),
 			Complex(2., 3.));
-		testunary(
+		Asserts.testunary(
 			"reciprocal",
 			Complex.divide(Complex(1., 0.), Complex(2., 3.)),
 			Complex(2., 3.));
-//		testunary(
-//			"exp",
-//			...,
-//			...);
-//		testunary(
-//			"ln",
-//			...,
-//			...);
-//		testunary(
-//			"exp",
-//			...,
-//			...);
-//		testunary(
-//			"sqrt",
-//			...,
-//			...);
+		Asserts.testunary(
+			"exp",
+			Complex(2.0.exp(), 0.),
+			Complex(2., 0.));
+		Asserts.testunary(
+			"exp",
+			Complex(-146.9279139, 20.9440662),
+			Complex(5., 3.));
+		Asserts.testunary(
+			"ln",
+			Complex(6.0.ln(), 0.),
+			Complex(6., 0.));
+		Asserts.testunary(
+			"ln",
+			Complex(1.763180262, 0.5404195),
+			Complex(5., 3.));
+		Asserts.testunary(
+			"sqrt",
+			Complex(3., 0.),
+			Complex(9., 0.));
+		Asserts.testunary(
+			"sqrt",
+			Complex(2.3271175, 0.644574),
+			Complex(5., 3.));
 
-		assertEquals("abs", 5., Complex(3., 4.).abs());
-		assertEquals("arg", (40000./5.).round(), (10000.*Complex(3., 4.).arg().sin()).round());
-// multiplyReal, divideReal, umultiplyReal, udivideReal
+		Asserts.assertEquals("abs", 5., Complex(3., 4.).abs());
+		Asserts.assertEquals("arg", (40000./5.).round(), (10000.*Complex(3., 4.).arg().sin()).round());
+
+		Asserts.assertEquals("multiplyReal", Complex(5., 7.5), Complex.multiplyReal(Complex(2., 3.), 2.5)); 
+		Asserts.assertEquals("umultiplyReal rv", Complex(5., 7.5), Complex(2., 3.).umultiplyReal(2.5)); 
+		Complex c := Complex(2., 3.);
+		Complex _ := c.umultiplyReal(2.5);
+		Asserts.assertEquals("umultiplyReal", Complex(5., 7.5), c);
+
+		Asserts.assertEquals("divideReal", Complex(2., 3.), Complex.divideReal(Complex(5., 7.5), 2.5)); 
+		Asserts.assertEquals("udivideReal rv", Complex(2., 3.), Complex(5., 7.5).udivideReal(2.5)); 
+		c := Complex(5., 7.5);
+		_ := c.udivideReal(2.5);
+		Asserts.assertEquals("udivideReal", Complex(2., 3.), c);
 	}
-
-	action assertEquals(string name, any a, any b)
-	{
-		if not a = b {
-			log "assert fail "+name+": "+a.valueToString()+" != "+b.valueToString() at ERROR;
-		}
-	}
-	
-	action testunary(string name, 
-			Complex r,
-			Complex a)
-	{
-		Complex a2 := a.clone(); 
-		action<Complex> returns Complex staticAction := 
-			<action<Complex> returns Complex> (<any> r).getAction(name);
-		log name+" "+a.toValueString();
-		assertEquals(name, r, staticAction(a));
-		
-		action<> returns Complex instanceAction := 
-			<action<> returns Complex> (<any> a).getAction("u"+name);
-		log "u"+name+" "+a.toValueString();
-		Complex rv := instanceAction();
-		assertEquals("u"+name+"rv", r, rv);
-
-		action<> returns Complex instanceAction2 := 
-			<action<> returns Complex> (<any> a2).getAction("u"+name);
-		log "u"+name+" "+a2.toValueString();
-		Complex _ := instanceAction2();
-		assertEquals("u"+name, r, a2);
-	}
-
-
-	
-	action testbinary(string name, 
-			Complex r,
-			Complex a,
-			Complex b)
-	{
-		Complex a2 := a.clone(); 
-		action<Complex, Complex> returns Complex staticAction := 
-			<action<Complex, Complex> returns Complex> (<any> r).getAction(name);
-		log a.toValueString()+" "+name+" "+b.toValueString();
-		assertEquals(name, r, staticAction(a, b));
-		
-		action<Complex> returns Complex instanceAction := 
-			<action<Complex> returns Complex> (<any> a).getAction("u"+name);
-		log a.toValueString()+" u"+name+" "+b.toValueString();
-		Complex rv := instanceAction(b);
-		assertEquals("u"+name+"rv", r, rv);
-
-		action<Complex> returns Complex instanceAction2 := 
-			<action<Complex> returns Complex> (<any> a2).getAction("u"+name);
-		log a2.toValueString()+" u"+name+" "+b.toValueString();
-		Complex _ := instanceAction2(b);
-		assertEquals("u"+name, r, a2);
-	}
-
 }
 

@@ -8,7 +8,9 @@ class PySysTest(BaseTest):
 		corr = CorrelatorHelper(self, name='correlator')
 		corr.start(logfile='correlator.log')
 		corr.injectEPL('../../../Complex.mon')
-		for test in os.listdir(self.input):
+		tests = os.listdir(self.input);
+		tests.sort()
+		for test in tests:
 			if test.endswith('.mon'):
 				corr.injectEPL(test)
 				corr.flush()
