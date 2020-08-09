@@ -1,0 +1,114 @@
+using com.apamax.Complex;
+using com.apamax.Quaternion;
+event Asserts
+{
+	static action equalsWithin(any a, any b, float tol) returns boolean
+	{
+		switch (a) {
+			case integer: {
+				return a = <integer> b;
+			}
+			case string: {
+				return a = <string> b;
+			}
+			case boolean: {
+				return a = <boolean> b;
+			}
+			case float: {
+				if a < (<float> b)-tol or a > (<float> b)+tol {
+					return false;
+				}
+			}
+			case Quaternion: {
+				Quaternion bc := <Quaternion> b;
+				if a.r < bc.r-tol or a.r > bc.r+tol then {
+					return false;
+				}
+				if a.i < bc.i-tol or a.i > bc.i+tol then {
+					return false;
+				}
+				if a.j < bc.j-tol or a.j > bc.j+tol then {
+					return false;
+				}
+				if a.k < bc.k-tol or a.k > bc.k+tol then {
+					return false;
+				}
+			}
+			case Complex: {
+				Complex bc := <Complex> b;
+				if a.r < bc.r-tol or a.r > bc.r+tol then {
+					return false;
+				}
+				if a.i < bc.i-tol or a.i > bc.i+tol then {
+					return false;
+				}
+			}
+			default: {
+				return a=b;
+			}
+		}
+		return true;
+	}
+	
+	static action assertEquals(string name, any a, any b)
+	{
+		if not equalsWithin(a, b, 0.0001) {
+			log "assert fail "+name+": "+a.valueToString()+" != "+b.valueToString() at ERROR;
+		}
+	}
+
+	static action testunary(string name, 
+			Complex r,
+			Complex a)
+	{
+		Complex a2 := a.clone(); 
+		action<Complex> returns Complex staticAction := 
+			<action<Complex> returns Complex> (<any> r).getAction(name);
+		log name+" "+a.toValueString();
+		assertEquals(name, r, staticAction(a));
+		
+		try {
+			action<> returns Complex instanceAction := 
+				<action<> returns Complex> (<any> a).getAction("u"+name);
+			log "u"+name+" "+a.toValueString();
+			Complex rv := instanceAction();
+			assertEquals("u"+name+"rv", r, rv);
+
+			action<> returns Complex instanceAction2 := 
+				<action<> returns Complex> (<any> a2).getAction("u"+name);
+			log "u"+name+" "+a2.toValueString();
+			Complex _ := instanceAction2();
+			assertEquals("u"+name, r, a2);
+		} catch (com.apama.exceptions.Exception e) {
+			log "Ignoring instance method u"+name+" because it doesn't exist";
+		}
+	}
+
+	static action testbinary(string name, 
+			Complex r,
+			Complex a,
+			Complex b)
+	{
+		Complex a2 := a.clone(); 
+		action<Complex, Complex> returns Complex staticAction := 
+			<action<Complex, Complex> returns Complex> (<any> r).getAction(name);
+		log a.toValueString()+" "+name+" "+b.toValueString();
+		assertEquals(name, r, staticAction(a, b));
+		
+		try {
+			action<Complex> returns Complex instanceAction := 
+				<action<Complex> returns Complex> (<any> a).getAction("u"+name);
+			log a.toValueString()+" u"+name+" "+b.toValueString();
+			Complex rv := instanceAction(b);
+			assertEquals("u"+name+"rv", r, rv);
+
+			action<Complex> returns Complex instanceAction2 := 
+				<action<Complex> returns Complex> (<any> a2).getAction("u"+name);
+			log a2.toValueString()+" u"+name+" "+b.toValueString();
+			Complex _ := instanceAction2(b);
+			assertEquals("u"+name, r, a2);
+		} catch (com.apama.exceptions.Exception e) {
+			log "Ignoring instance method u"+name+" because it doesn't exist";
+		}
+	}
+}

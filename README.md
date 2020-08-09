@@ -1,15 +1,19 @@
 # EPL complex numbers
-Apama EPL Class for handling complex numbers from EPL
+Apama EPL Classes for handling complex numbers and quaternions from EPL
 
 ## Supported Apama version
 
 This works with Apama 10.5 or later, and probably most of the earlier ones as well
 
-## Using complex numbers from EPL
+## Using the classes from EPL
 
-To use Complex numbers from EPL, add Complex.mon to your project, or ensure you inject it before your EPL code. Then import the event into your file with:
+To use complex numbers from EPL, add Complex.mon to your project, or ensure you inject it before your EPL code. Then import the event into your file with:
 
 	using com.apamax.Complex;
+
+To use quaternions from EPL, add both Complex.mon and Quaternion.mon to your project, or ensure you inject both before your EPL code. Then import the event into your file with:
+
+	using com.apamax.Quaternion;
 
 ## Running tests
 

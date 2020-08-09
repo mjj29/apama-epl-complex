@@ -1,0 +1,455 @@
+/**
+ * Title:        Quaternion.mon
+ * Description:  EPL Quaternions
+ * Copyright (c) 2020 Software AG, Darmstadt, Germany and/or its licensors
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the License at
+ * http:/www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software distributed under the
+ * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied.
+ * See the License for the specific language governing permissions and limitations under the License.
+ */
+
+package com.apamax;
+
+/**
+ * Event that represents quaternionss in EPL.
+ *
+ * A Quaternion can be created either from the real and i, j, k parts as floating point numbers, eg:
+<code>
+Quaternion q := Quaternion(3.1, 5.0, 0.1, 2.); // 3.1 + 5i + 0.1j + 2k
+</code>
+ * or by using one of the static from functions on Quaternion:
+<code>
+Quaternion c := Quaternion.fromComplex(Complex(1., 1.)); // 1 + i
+</code>
+ *
+ * There are also a number of convenince functions to return certain constants as Quaternions.
+ *
+ * You can inspect a Quaternion using the scalar(), vector() and getI(), getJ() and getK() functions, which return the various parts of the Quaternion.
+ *
+ * For operating on Quaternions this class provides operations as both static and event instance actions. Typically these have both a static version and an instance version with the name prefixed by <tt>u</tt>. The static action creates and returns a new Quaternion. The instance <tt>u</tt> form will modify the quaternion and return a reference to itself, to be used in chains of function calls. In other words, if <tt>add(a, b)</tt> corresponds to <tt>a + b</tt>, then <tt>a.uadd(b)</tt> corresponds to <tt>a += b</tt>. This has been done for performance reasons.
+ */
+event Quaternion
+{
+	/** @private */
+	constant integer INTERNAL_TO_STRING := 1;
+	/** @private */
+	constant integer INTERNAL_FORMAT_FIXED := 2;
+	/** @private */
+	constant integer INTERNAL_FORMAT_SCIENTIFIC := 3;
+	
+	/** Returns Euler's number e, represented as a quaternion. */
+	static action E() returns Quaternion { return Quaternion(float.E, 0., 0., 0.); }
+	/** Returns the constant pi, represented as a quaternion. */
+	static action PI() returns Quaternion { return Quaternion(float.PI, 0., 0., 0.); }
+	/** Returns the square root of -1, i, represented as a quaternion. */
+	static action I() returns Quaternion { return Quaternion(0., 1., 0., 0.); }
+	/** Returns 0, represented as a quaternion. */
+	static action ZERO() returns Quaternion { return Quaternion(0., 0., 0., 0.); }
+	/** Returns 1, represented as a quaternion. */
+	static action ONE() returns Quaternion { return Quaternion(1., 0., 0., 0.); }
+	/** Returns infinity + infinity*i, represented as a quaternion. */
+	static action INFINITY() returns Quaternion { return Quaternion(float.INFINITY, float.INFINITY, float.INFINITY, float.INFINITY); }
+	/** Returns a Quaternion which is not a number. */
+	static action NAN() returns Quaternion { return Quaternion(float.NAN, float.NAN, float.NAN, float.NAN); }
+
+	/** Returns the real/scalar part of this Quaternion. */
+	action scalar() returns float { return r; }
+	/** Returns the imaginary/vector parts of this Quaternion. */
+	action vector() returns sequence<float> { return [i, j, k]; }
+	/** Returns the i part of this Quaternion. */
+	action getI() returns float { return i; }
+	/** Returns the j part of this Quaternion. */
+	action getJ() returns float { return j; }
+	/** Returns the k part of this Quaternion. */
+	action getK() returns float { return k; }
+
+	/** Creates a Quaternion with the given float as the real part and the other parts 0. */
+	static action fromRealFloat(float r) returns Quaternion
+	{
+		return Quaternion(r, 0., 0., 0.);
+	}
+	/** Creates a Quaternion with the given float as i and the other parts 0. */
+	static action fromIFloat(float i) returns Quaternion
+	{
+		return Quaternion(0., i, 0., 0.);
+	}
+	/** Creates a Quaternion with the given float as i and the other parts 0. */
+	static action fromJFloat(float j) returns Quaternion
+	{
+		return Quaternion(0., 0., j, 0.);
+	}
+	/** Creates a Quaternion with the given float as k and the other parts 0. */
+	static action fromKFloat(float k) returns Quaternion
+	{
+		return Quaternion(0., 0., 0., k);
+	}
+	/** Creates a Quaternion from a Complex number, with the j and k parts 0. */
+	static action fromComplex(Complex c) returns Quaternion
+	{
+		return Quaternion(c.r, c.i, 0., 0.);
+	}
+
+	/** Return a new Quaternion which is the complex conjugate of the argument. */
+	static action conjugate(Quaternion a) returns Quaternion
+	{
+		return Quaternion(a.r, -a.i, -a.j, -a.k);
+	}
+	/** Assign this to its complex conjugate and return self. */
+	action uconjugate() returns Quaternion
+	{
+		i := -i;
+		j := -j;
+		k := -k;
+		return self;
+	}
+
+	/**
+	 * Add two quaternions and return a new Quaternion with the result. 
+	 * @return a+b.
+	 */
+	static action add(Quaternion a, Quaternion b) returns Quaternion
+	{
+		return Quaternion(a.r+b.r, a.i+b.i, a.j+b.j, a.k+b.k);
+	}
+	/** Subtract two quaternions and return a new Quaternion with the result.
+	 * @return a-b.
+	 */
+	static action subtract(Quaternion a, Quaternion b) returns Quaternion
+	{
+		return Quaternion(a.r-b.r, a.i-b.i, a.j-b.j, a.k-b.k);
+	}
+	/** Multiply two quaternions and return a new Quaternion with the result.
+	 * Since multiplication on quaternions is not commutative a*b is not b*a for all cases.
+	 * This also means that a/b is ambiguous, since it could mean a(b^-1) or (b^-1)a.
+	 * To divide use multiply and reciprocal in conjuction to specify the order.
+	 * @return a*b. 
+	 */
+	static action multiply(Quaternion a, Quaternion b) returns Quaternion
+	{
+		return Quaternion(a.r*b.r - a.i*b.i - a.j*b.j - a.k*b.k,
+		                  a.r*b.i + a.i*b.r + a.j*b.k - a.k*b.j,
+		                  a.r*b.j - a.i*b.k + a.j*b.r + a.k*b.i,
+		                  a.r*b.k + a.i*b.j - a.j*b.i + a.k*b.r);
+	}
+	/** Return the norm of this Quaternion.
+	 * @returns ||a||
+	 */
+	action norm() returns float
+	{
+		return (r*r+i*i+j*j+k*k).sqrt();
+	}
+	/** @private */
+	action vectorNorm() returns float
+	{
+		return (i*i+j*j+k*k).sqrt();
+	}
+	/** Return a new Quaternion which is the negation of the argument.
+	 * @return -a
+	 */
+	static action negate(Quaternion a) returns Quaternion
+	{
+		return Quaternion(-a.r, -a.i, -a.j, -a.k);
+	}
+	/** Return a new Quaternion which is the reciprocal of the argument.
+	 * @return -1/a
+	 */
+	static action reciprocal(Quaternion a) returns Quaternion
+	{
+		float n := a.norm();
+		Quaternion q := Quaternion.conjugate(a);
+		q := q.udivideReal(n*n);
+		return q;
+	}
+
+	/**
+	 * Return the Quaternion as a string.
+	 * e.g. 0.3-4.5i
+	 */
+	action toValueString() returns string
+	{
+		return internalToString(INTERNAL_TO_STRING, 0);
+	}
+	/**
+	 * @private
+     */
+	action internalToStringFormat(float f, integer mode, integer arg) returns string
+	{
+		if INTERNAL_TO_STRING = mode {
+			return f.toString();
+		} else if INTERNAL_FORMAT_FIXED = mode {
+			return f.formatFixed(arg);
+		} else if INTERNAL_FORMAT_SCIENTIFIC = mode {
+			return f.formatScientific(arg);
+		} else {
+			return "ERROR";
+		}
+	}
+	/**
+	 * @private
+	 */
+	action internalToString(integer mode, integer arg) returns string
+	{
+		if isNaN() {
+			return "NaN";
+		}
+		if 0. = r and 0. = i and 0. = j and 0. = k {
+			return "0";
+		}
+		string str := "";
+		boolean addPrefix := false;
+		if 0. != r {
+			str := str + internalToStringFormat(r, mode, arg);
+			addPrefix := true;
+		}
+		if 0. != i {
+			if addPrefix and i > 0. { str := str + "+"; }
+			str := str + internalToStringFormat(i, mode, arg);
+			addPrefix := true;
+		}
+		if 0. != j {
+			if addPrefix and j > 0. { str := str + "+"; }
+			str := str + internalToStringFormat(j, mode, arg);
+			addPrefix := true;
+		}
+		if 0. != k {
+			if addPrefix and k > 0. { str := str + "+"; }
+			str := str + internalToStringFormat(k, mode, arg);
+			addPrefix := true;
+		}
+		return str;		
+	}
+
+	/**
+	 * Return the Quaternion as a string with a fixed number of decimal places.
+	 * e.g. 0.30j-4.51k
+	 * @param dp The number of decimal places in each part.
+	 */
+	action formatFixed(integer dp) returns string
+	{
+		return internalToString(INTERNAL_FORMAT_FIXED, dp);
+	}
+
+	/**
+	 * Return the Quaternion as a string in scientific notation
+	 * e.g. 1.3e-2+5.6e10j
+	 * @param dp The number of significant figures in each part.
+	 */
+	action formatScientific(integer sf) returns string
+	{
+		return internalToString(INTERNAL_FORMAT_SCIENTIFIC, sf);
+	}
+
+	/** Returns true if any part of this Quaternion is not a number. */
+	action isNaN() returns boolean
+	{
+		return r.isNaN() or i.isNaN() or j.isNaN() or k.isNaN();
+	}
+	/** Returns true if all parts of this Quaternion are bit-equals to the corresponding parts of the argument. */
+	action bitEquals(Quaternion b) returns boolean
+	{
+		return r.bitEquals(b.r) and i.bitEquals(b.i) and j.bitEquals(b.j) and k.bitEquals(b.k);
+	}
+	/** Returns true if all parts of this Quaternion are finite. */
+	action isFinite() returns boolean
+	{
+		return r.isFinite() and i.isFinite() and j.isFinite() and k.isFinite();
+	}
+	/** Returns true if any part of this Quaternion is infinite. */
+	action isInfinite() returns boolean
+	{
+		return r.isInfinite() or i.isInfinite() or j.isInfinite() or k.isInfinite();
+	}
+
+	/** Set this Quaternion to its own negation and return self. */
+	action unegate() returns Quaternion
+	{
+		r := -r;
+		i := -i;
+		j := -j;
+		k := -k;
+		return self;
+	}
+	/** Set this Complex number to add the argument and return self. */
+	action uadd(Quaternion b) returns Quaternion 
+	{
+		r := r+b.r;
+		i := i+b.i;
+		j := j+b.j;
+		k := k+b.k;
+		return self;
+	}
+	/** Set this Quaternion to subtract the argument and return self. */
+	action usubtract(Quaternion b) returns Quaternion
+	{
+		r := r-b.r;
+		i := i-b.i;
+		j := j-b.j;
+		k := k-b.k;
+		return self;
+	}
+	/** Set this Quaternion to multiply by the argument and return self.
+	    Since multiplication on quaternions is not commutative a*b is not b*a for all cases.
+	    This action calculates self*b.
+	    This also means that a/b is ambiguous, since it could mean a(b^-1) or (b^-1)a.
+	    To divide use umultiply and ureciprocal in conjuction to specify the order.
+	*/
+	action umultiply(Quaternion b) returns Quaternion
+	{
+		float tr := r*b.r - i*b.i - j*b.j - k*b.k;
+        float ti := r*b.i + i*b.r + j*b.k - k*b.j;
+        float tj := r*b.j - i*b.k + j*b.r + k*b.i;
+        float tk := r*b.k + i*b.j - j*b.i + k*b.r;
+		r := tr;
+		i := ti;
+		j := tj;
+		k := tk;	
+		return self;
+	}
+	/** Set this Complex number to its own reciprocal and return self. */
+	action ureciprocal() returns Quaternion
+	{
+		float n := norm();
+		return uconjugate().udivideReal(n*n);
+	}
+
+	/** Sets this Quaternion to the natural logarithm of itself and return self. */
+	action uln() returns Quaternion
+	{
+		float vn := vectorNorm();
+		float n := norm();
+		if 0. = n then {
+			return NAN();
+		}
+		float lq := n.ln();
+		float ac := (r/n).acos();
+		if (0. != vn) {
+			Quaternion _ := umultiplyReal(ac);
+			_ := udivideReal(vn);
+		}
+		r := lq;
+		return self;
+	}
+	/** Return the natural log of the argument as a new Quaternion.
+	 * @return ln(a)
+	 */
+	static action ln(Quaternion a) returns Quaternion
+	{
+		Quaternion q := a.clone();
+		return q.uln();
+	}
+	/** Return a Quaternion raised to the power of a real as a new Quaternion
+	 * @return a<sup>b</sup>
+	 */
+	static action powReal(Quaternion a, float b) returns Quaternion
+	{
+		Quaternion c := a.clone();
+		return c.upowReal(b);
+	}
+	/** Raise this Quaternion to the power of a real and return self.
+	 * @return self<sup>x</sup>
+	 */
+	 action upowReal(float x) returns Quaternion
+	{
+		 // ||q||
+		 float n := norm();
+		 // phi = arccos(r/||q||)
+		 float phi := (r/n).acos();
+		 float phix := phi*x;
+		 // make the vector the unit vector ^n = v/||v||
+		 Quaternion _ := udivideReal(vectorNorm());		
+		 // ^n*sin(x*phi)
+		 _ := umultiplyReal(phix.sin());
+		 // + cos(x*phi)
+		 r := phix.cos();
+		 // all * ||q||^x
+		 return umultiplyReal(n.pow(x));
+	}
+	
+	/** Exponentiate the argument and return the result as a new Quaternion
+	 * @returns e<sup>a</sup>
+	 */
+	static action exp(Quaternion a) returns Quaternion
+	{
+		Quaternion b := a.clone();
+		return b.uexp();		
+	}
+	/** Exponentiate this Quaternion and return self.
+	 * @returns e<sup>self</sup>
+	 */
+	action uexp() returns Quaternion
+	{
+		float vn := vectorNorm();
+		float s := r;
+		r := 0.;
+		if (0. != vn) {
+			Quaternion _ := udivideReal(vn);
+			_ := umultiplyReal(vn.sin());
+		}
+		r := vn.cos();
+		return umultiplyReal(s.exp());
+	}
+	/** Divide the given Quaternion by a real divisor and return the result as a new Quaternion.
+	 * @return a/b
+	 */
+	static action divideReal(Quaternion a, float b) returns Quaternion
+	{
+		return Quaternion(a.r/b, a.i/b, a.j/b, a.k/b);
+	}
+	/** Multiply the given Quaternion by a real divisor and return the result as a new Quaternion.
+	 * @return a*b
+	 */
+	static action multiplyReal(Quaternion a, float b) returns Quaternion
+	{
+		return Quaternion(a.r*b, a.i*b, a.j*b, a.k*b);
+	}
+	/** Set this Quaternion to be divided by the real argument and return self. */
+	action udivideReal(float b) returns Quaternion
+	{
+		r := r/b;
+		i := i/b;
+		j := j/b;
+		k := k/b;
+		return self;
+	}
+	/** Set this Quaternion to be multiplied by the real argument and return self. */
+	action umultiplyReal(float b) returns Quaternion
+	{
+		r := r*b;
+		i := i*b;
+		j := j*b;
+		k := k*b;
+		return self;
+	}
+	
+	/** Calculate the dot product of two vector Quaternions.
+	 * This ignores the scalar part of the Quaternions.
+	 * @return a.b
+	 */
+	static action dotProduct(Quaternion a, Quaternion b) returns float
+	{
+		return a.i*b.i+a.j*b.j+a.k*b.k;
+	}
+	
+	/** Calculate the cross product of two Quaternions.
+	 * If the Quaternions are not vector quaternions, the resultant scalar part will be the product of the scalar parts of the quaternions.
+	 * @return a x b
+	 */
+	static action crossProduct(Quaternion a, Quaternion b) returns Quaternion
+	{
+		return Quaternion(a.r*b.r, a.j*b.k-a.k*b.j, a.k*b.i-a.i*b.k, a.i*b.j-a.j*b.i);
+	}
+
+	/** @private */
+	float r;
+	/** @private */
+	float i;
+	/** @private */
+	float j;
+	/** @private */
+	float k;
+}
+

@@ -1,0 +1,36 @@
+using com.apamax.Quaternion;
+// test:
+// i^2 = j^2 = k^2 = ijk = -1
+// ij=k, ki = j, jk = i
+// ji=-k, kj=-i, ik=-j
+monitor Identities
+{
+	action onload()
+	{
+		Asserts.assertEquals("u i^2=-1", Quaternion(0., 1., 0., 0.).umultiply(Quaternion(0., 1., 0., 0.)), Quaternion(-1., 0., 0., 0.));
+		Asserts.assertEquals("u j^2=-1", Quaternion(0., 0., 1., 0.).umultiply(Quaternion(0., 0., 1., 0.)), Quaternion(-1., 0., 0., 0.));
+		Asserts.assertEquals("u k^2=-1", Quaternion(0., 0., 0., 1.).umultiply(Quaternion(0., 0., 0., 1.)), Quaternion(-1., 0., 0., 0.));
+		Asserts.assertEquals("u ijk=-1", Quaternion(0., 1., 0., 0.).umultiply(Quaternion(0., 0., 1., 0.)).umultiply(Quaternion(0., 0., 0., 1.)), Quaternion(-1., 0., 0., 0.));
+		
+		Asserts.assertEquals("i^2=-1", Quaternion.multiply(Quaternion(0., 1., 0., 0.), Quaternion(0., 1., 0., 0.)), Quaternion(-1., 0., 0., 0.));
+		Asserts.assertEquals("j^2=-1", Quaternion.multiply(Quaternion(0., 0., 1., 0.), Quaternion(0., 0., 1., 0.)), Quaternion(-1., 0., 0., 0.));
+		Asserts.assertEquals("k^2=-1", Quaternion.multiply(Quaternion(0., 0., 0., 1.), Quaternion(0., 0., 0., 1.)), Quaternion(-1., 0., 0., 0.));
+		Asserts.assertEquals("ijk=-1", Quaternion.multiply(Quaternion.multiply(Quaternion(0., 1., 0., 0.), Quaternion(0., 0., 1., 0.)), Quaternion(0., 0., 0., 1.)), Quaternion(-1., 0., 0., 0.));
+		
+		Asserts.assertEquals("u ij=k", Quaternion(0., 1., 0., 0.).umultiply(Quaternion(0., 0., 1., 0.)), Quaternion(0., 0., 0., 1.));
+		Asserts.assertEquals("u jk=i", Quaternion(0., 0., 1., 0.).umultiply(Quaternion(0., 0., 0., 1.)), Quaternion(0., 1., 0., 0.));
+		Asserts.assertEquals("u ki=j", Quaternion(0., 0., 0., 1.).umultiply(Quaternion(0., 1., 0., 0.)), Quaternion(0., 0., 1., 0.));
+		
+		Asserts.assertEquals("u ji=-k", Quaternion(0., 0., 1., 0.).umultiply(Quaternion(0., 1., 0., 0.)), Quaternion(0., 0., 0., -1.));
+		Asserts.assertEquals("u kj=-i", Quaternion(0., 0., 0., 1.).umultiply(Quaternion(0., 0., 1., 0.)), Quaternion(0., -1., 0., 0.));
+		Asserts.assertEquals("u ik=-j", Quaternion(0., 1., 0., 0.).umultiply(Quaternion(0., 0., 0., 1.)), Quaternion(0., 0., -1., 0.));
+		
+		Asserts.assertEquals("ij=k", Quaternion.multiply(Quaternion(0., 1., 0., 0.), Quaternion(0., 0., 1., 0.)), Quaternion(0., 0., 0., 1.));
+		Asserts.assertEquals("jk=i", Quaternion.multiply(Quaternion(0., 0., 1., 0.), Quaternion(0., 0., 0., 1.)), Quaternion(0., 1., 0., 0.));
+		Asserts.assertEquals("ki=j", Quaternion.multiply(Quaternion(0., 0., 0., 1.), Quaternion(0., 1., 0., 0.)), Quaternion(0., 0., 1., 0.));
+		
+		Asserts.assertEquals("ji=-k", Quaternion.multiply(Quaternion(0., 0., 1., 0.), Quaternion(0., 1., 0., 0.)), Quaternion(0., 0., 0., -1.));
+		Asserts.assertEquals("kj=-i", Quaternion.multiply(Quaternion(0., 0., 0., 1.), Quaternion(0., 0., 1., 0.)), Quaternion(0., -1., 0., 0.));
+		Asserts.assertEquals("ik=-j", Quaternion.multiply(Quaternion(0., 1., 0., 0.), Quaternion(0., 0., 0., 1.)), Quaternion(0., 0., -1., 0.));
+	}
+}

@@ -1,0 +1,90 @@
+using com.apamax.Quaternion;
+
+monitor Arithmetic
+{
+	action onload()
+	{
+	/*	Asserts.testbinary(
+			"add",
+			Complex(5., 6.),
+			Complex(2., 4.),
+			Complex(3., 2.));
+		Asserts.testbinary(
+			"subtract",
+			Complex(5., -6.),
+			Complex(12., 7.),
+			Complex(7., 13.));
+		Asserts.testbinary(
+			"multiply",
+			Complex(-7., 22.),
+			Complex(2., 3.),
+			Complex(4., 5.));
+		Asserts.testbinary(
+			"divide",
+			Complex(2., 3.),
+			Complex(-7., 22.),
+			Complex(4., 5.));
+		Asserts.testbinary(
+			"pow",
+			Complex(8., 0.),
+			Complex(2., 0.),
+			Complex(3., 0.));
+		Asserts.testbinary(
+			"pow",
+			Complex(-18.93471069, 5.806886279),
+			Complex(5., 3.),
+			Complex(2., 1.));
+		Asserts.testunary(
+			"negate",
+			Complex(-2., 3.),
+			Complex(2., -3.));
+		Asserts.testunary(
+			"conjugate",
+			Complex(2., -3.),
+			Complex(2., 3.));
+		Asserts.testunary(
+			"reciprocal",
+			Complex.divide(Complex(1., 0.), Complex(2., 3.)),
+			Complex(2., 3.));
+		Asserts.testunary(
+			"exp",
+			Complex(2.0.exp(), 0.),
+			Complex(2., 0.));
+		Asserts.testunary(
+			"exp",
+			Complex(-146.9279139, 20.9440662),
+			Complex(5., 3.));
+		Asserts.testunary(
+			"ln",
+			Complex(6.0.ln(), 0.),
+			Complex(6., 0.));
+		Asserts.testunary(
+			"ln",
+			Complex(1.763180262, 0.5404195),
+			Complex(5., 3.));
+		Asserts.testunary(
+			"sqrt",
+			Complex(3., 0.),
+			Complex(9., 0.));
+		Asserts.testunary(
+			"sqrt",
+			Complex(2.3271175, 0.644574),
+			Complex(5., 3.));
+
+		Asserts.assertEquals("abs", 5., Complex(3., 4.).abs());
+		Asserts.assertEquals("arg", (40000./5.).round(), (10000.*Complex(3., 4.).arg().sin()).round());
+
+		Asserts.assertEquals("multiplyReal", Complex(5., 7.5), Complex.multiplyReal(Complex(2., 3.), 2.5)); 
+		Asserts.assertEquals("umultiplyReal rv", Complex(5., 7.5), Complex(2., 3.).umultiplyReal(2.5)); 
+		Complex c := Complex(2., 3.);
+		Complex _ := c.umultiplyReal(2.5);
+		Asserts.assertEquals("umultiplyReal", Complex(5., 7.5), c);
+
+		Asserts.assertEquals("divideReal", Complex(2., 3.), Complex.divideReal(Complex(5., 7.5), 2.5)); 
+		Asserts.assertEquals("udivideReal rv", Complex(2., 3.), Complex(5., 7.5).udivideReal(2.5)); 
+		c := Complex(5., 7.5);
+		_ := c.udivideReal(2.5);
+		Asserts.assertEquals("udivideReal", Complex(2., 3.), c);*/
+	}
+}
+

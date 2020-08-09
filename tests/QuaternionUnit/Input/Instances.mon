@@ -1,0 +1,100 @@
+using com.apamax.Quaternion;
+/*
+Test:
+* constants
+* real/imag
+* from*
+* max/min
+* toValueString
+* format*
+* isNaN
+* bitEquals
+* isFinite/Infinite
+*/
+monitor Instances
+{
+	action onload()
+	{
+		testConstants();
+		testCreateAccess();
+		testCharacteristics();
+		testFormat();
+	}
+	action testFormat()
+	{
+/*		Asserts.assertEquals("toStringA", "2+3i", Complex(2., 3.).toValueString());
+		Asserts.assertEquals("toStringB", "2-3i", Complex(2., -3.).toValueString());
+		Asserts.assertEquals("toStringC", "-2+3i", Complex(-2., 3.).toValueString());
+		Asserts.assertEquals("toStringD", "-2-3i", Complex(-2., -3.).toValueString());
+		Asserts.assertEquals("toStringE", "2", Complex(2., 0.).toValueString());
+		Asserts.assertEquals("toStringF", "3i", Complex(0., 3.).toValueString());
+		Asserts.assertEquals("toStringG", "0", Complex(0., 0.).toValueString());
+		Asserts.assertEquals("toStringH", "NaN", Complex.NAN().toValueString());
+		Asserts.assertEquals("toStringI", "NaN", Complex(float.NAN, 0.).toValueString());
+		Asserts.assertEquals("toStringJ", "NaN", Complex(0., float.NAN).toValueString());
+		Asserts.assertEquals("toStringH", "Infinity+Infinityi", Complex.INFINITY().toValueString());
+		Asserts.assertEquals("toStringI", "Infinity", Complex(float.INFINITY, 0.).toValueString());
+		Asserts.assertEquals("toStringJ", "Infinityi", Complex(0., float.INFINITY).toValueString());
+
+		Asserts.assertEquals("formatFixedA", "3.14+3.14i", Complex(float.PI, float.PI).formatFixed(2));
+		Asserts.assertEquals("formatFixedB", "3.14", Complex(float.PI, 0.).formatFixed(2));
+		Asserts.assertEquals("formatFixedC", "3.14i", Complex(0., float.PI).formatFixed(2));
+		Asserts.assertEquals("formatFixedD", "0", Complex(0., 0.).formatFixed(2));
+		Asserts.assertEquals("formatScientificA", "3.14e+02+3.14e+02i", Complex(float.PI*100., float.PI*100.).formatScientific(3));
+		Asserts.assertEquals("formatScientificB", "3.14e+02", Complex(float.PI*100., 0.).formatScientific(3));
+		Asserts.assertEquals("formatScientificC", "3.14e+02i", Complex(0., float.PI*100.).formatScientific(3));
+		Asserts.assertEquals("formatScientificD", "0", Complex(0., 0.).formatScientific(3));*/
+	}
+	action testCharacteristics()
+	{
+		/*Asserts.assertEquals("Min", Complex(1., 1.), Complex.min(Complex(1., 1.), Complex(5., 7.)));
+		Asserts.assertEquals("Max", Complex(5., 7.), Complex.max(Complex(1., 1.), Complex(5., 7.)));
+		Asserts.assertEquals("isNaNy", true, Complex.NAN().isNaN());
+		Asserts.assertEquals("isNaNn", false, Complex.ZERO().isNaN());
+		Asserts.assertEquals("isFinitey", true, Complex.ZERO().isFinite());
+		Asserts.assertEquals("isFiniten", false, Complex.INFINITY().isFinite());
+		Asserts.assertEquals("isInfinitey", true, Complex.INFINITY().isInfinite());
+		Asserts.assertEquals("isInfiniten", false, Complex.ZERO().isInfinite());
+		Asserts.assertEquals("bitEquals", true, Complex.ZERO().bitEquals(Complex.ZERO()));
+		Asserts.assertEquals("bitEquals", false, Complex.I().bitEquals(Complex.ZERO()));*/
+	}
+	action testCreateAccess()
+	{
+		/*Complex c1 := Complex(42., 666.);
+		Asserts.assertEquals("c1r", 42., c1.real());
+		Asserts.assertEquals("c1i", 666., c1.imag());
+		Complex c2 := Complex.fromRealFloat(42.);
+		Asserts.assertEquals("c2r", 42., c2.real());
+		Asserts.assertEquals("c2i", 0., c2.imag());
+		Complex c3 := Complex.fromRealInteger(42);
+		Asserts.assertEquals("c3r", 42., c3.real());
+		Asserts.assertEquals("c3i", 0., c3.imag());
+		Complex c4 := Complex.fromImaginaryFloat(666.);
+		Asserts.assertEquals("c4r", 0., c4.real());
+		Asserts.assertEquals("c4i", 666., c4.imag());
+		Complex c5 := Complex.fromImaginaryInteger(666);
+		Asserts.assertEquals("c5r", 0., c5.real());
+		Asserts.assertEquals("c5i", 666., c5.imag());
+		Complex c6 := Complex.fromPolar(6., float.PI/2.);
+		Asserts.assertEquals("c6r", 0., c6.real());
+		Asserts.assertEquals("c6i", 6., c6.imag());*/
+	}
+	action testConstants()
+	{
+		/*Asserts.assertEquals("PIr", float.PI, Complex.PI().r);
+		Asserts.assertEquals("PIi", 0., Complex.PI().i);
+		Asserts.assertEquals("Er", float.E, Complex.E().r);
+		Asserts.assertEquals("Ei", 0., Complex.E().i);
+		Asserts.assertEquals("0r", 0., Complex.ZERO().r);
+		Asserts.assertEquals("0i", 0., Complex.ZERO().i);
+		Asserts.assertEquals("1r", 1., Complex.ONE().r);
+		Asserts.assertEquals("1i", 0., Complex.ONE().i);
+		Asserts.assertEquals("Ir", 0., Complex.I().r);
+		Asserts.assertEquals("Ii", 1., Complex.I().i);
+		Asserts.assertEquals("INFINITYr", float.INFINITY, Complex.INFINITY().r);
+		Asserts.assertEquals("INFINITYi", float.INFINITY, Complex.INFINITY().i);
+		Asserts.assertEquals("NANr", true, Complex.NAN().r.isNaN());
+		Asserts.assertEquals("NANi", true, Complex.NAN().i.isNaN());
+		Asserts.assertEquals("NAN", true, Complex.NAN().isNaN());*/
+	}
+}

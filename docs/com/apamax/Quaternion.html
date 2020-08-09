@@ -1,0 +1,837 @@
+<HTML><!-- saved from url=(0014)about:internet -->
+
+
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Quaternion</TITLE>
+<META NAME="keywords" CONTENT="Quaternion&nbsp;event">
+<LINK REL="stylesheet" TYPE="text/css" HREF="stylesheet.css" TITLE="Style">
+<SCRIPT type="text/javascript">function windowTitle()
+          {
+          parent.document.title="Quaternion";
+          }
+          </SCRIPT>
+<NOSCRIPT></NOSCRIPT>
+</HEAD>
+<BODY BGCOLOR="white" onload="windowTitle();">
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2"><A target="_top" HREF="../../index.html?com/apamax/Quaternion.html"><B>FRAMES</B></A>  &nbsp;
+
+            &nbsp;<A target="_top" HREF="Quaternion.html"><B>NO FRAMES</B></A>  &nbsp;
+            &nbsp;<SCRIPT type="text/javascript"></SCRIPT>
+<NOSCRIPT>
+<A HREF="../../alltypes-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+</FONT></TD>
+</TR>
+<TR>
+<TD COLSPAN="2" BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+<TR ALIGN="center" VALIGN="top">
+<TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;
+              </TD><TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1"><A HREF="../..//com/apamax/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A></TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;
+              </TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT>&nbsp;
+                </A></TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1" WIDTH="100%" ALIGN="RIGHT"></TD>
+</TR>
+</TABLE>
+</TD><TD ALIGN="right" VALIGN="top" ROWSPAN="3"><EM></EM></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">SUMMARY:&nbsp;IMPORT&nbsp;|&nbsp;CONSTANT&nbsp;|&nbsp;MEMBER&nbsp;|&nbsp;<A HREF="#action_summary">ACTION</A></FONT></TD><TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">DETAIL:&nbsp;IMPORT&nbsp;|&nbsp;CONSTANT&nbsp;|&nbsp;MEMBER&nbsp;|&nbsp;<A HREF="#action_detail">ACTION</A></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+<H2>
+<FONT SIZE="-1">com.apamax</FONT>
+<BR>Event Quaternion</H2>
+<HR>Event that represents quaternionss in EPL.<br>
+<br> A Quaternion can be created either from the real and i, j, k parts as floating point numbers, eg: <pre><br>Quaternion q := Quaternion(3.1, 5.0, 0.1, 2.); // 3.1 + 5i + 0.1j + 2k<br></pre> or by using one of the static from functions on Quaternion: <pre><br>Quaternion c := Quaternion.fromComplex(Complex(1., 1.)); // 1 + i<br></pre> There are also a number of convenince functions to return certain constants as Quaternions.<br>
+<br> You can inspect a Quaternion using the scalar(), vector() and getI(), getJ() and getK() functions, which return the various parts of the Quaternion.<br>
+<br> For operating on Quaternions this class provides operations as both static and event instance actions. Typically these have both a static version and an instance version with the name prefixed by <tt>u</tt>. The static action creates and returns a new Quaternion. The instance <tt>u</tt> form will modify the quaternion and return a reference to itself, to be used in chains of function calls. In other words, if <tt>add(a, b)</tt> corresponds to <tt>a + b</tt>, then <tt>a.uadd(b)</tt> corresponds to <tt>a += b</tt>. This has been done for performance reasons.<HR>
+<A NAME="action_summary"></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="2"><FONT SIZE="+2"><B>Action summary</B></FONT></TH>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#add()">add</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</CODE>
+<br>
+<br>Add two quaternions and return a new Quaternion with the result.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;boolean</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#bitEquals()">bitEquals</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</CODE>
+<br>
+<br>Returns true if all parts of this Quaternion are bit-equals to the corresponding parts of the argument.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#conjugate()">conjugate</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a)</CODE>
+<br>
+<br>Return a new Quaternion which is the complex conjugate of the argument.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#crossProduct()">crossProduct</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</CODE>
+<br>
+<br>Calculate the cross product of two Quaternions. If the Quaternions are not vector quaternions, the resultant scalar part will be the product of the scalar parts of the quaternions.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#divideReal()">divideReal</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;float&nbsp;b)</CODE>
+<br>
+<br>Divide the given Quaternion by a real divisor and return the result as a new Quaternion.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;float</CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#dotProduct()">dotProduct</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</CODE>
+<br>
+<br>Calculate the dot product of two vector Quaternions. This ignores the scalar part of the Quaternions.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#E()">E</A></B>()</CODE>
+<br>
+<br>Returns Euler's number e, represented as a quaternion.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#exp()">exp</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a)</CODE>
+<br>
+<br>Exponentiate the argument and return the result as a new Quaternion</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;string</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#formatFixed()">formatFixed</A></B>(integer&nbsp;dp)</CODE>
+<br>
+<br>Return the Quaternion as a string with a fixed number of decimal places. e.g. 0.30j-4.51k</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;string</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#formatScientific()">formatScientific</A></B>(integer&nbsp;sf)</CODE>
+<br>
+<br>Return the Quaternion as a string in scientific notation e.g. 1.3e-2+5.6e10j</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#fromComplex()">fromComplex</A></B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;c)</CODE>
+<br>
+<br>Creates a Quaternion from a Complex number, with the j and k parts 0.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#fromIFloat()">fromIFloat</A></B>(float&nbsp;i)</CODE>
+<br>
+<br>Creates a Quaternion with the given float as i and the other parts 0.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#fromJFloat()">fromJFloat</A></B>(float&nbsp;j)</CODE>
+<br>
+<br>Creates a Quaternion with the given float as i and the other parts 0.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#fromKFloat()">fromKFloat</A></B>(float&nbsp;k)</CODE>
+<br>
+<br>Creates a Quaternion with the given float as k and the other parts 0.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#fromRealFloat()">fromRealFloat</A></B>(float&nbsp;r)</CODE>
+<br>
+<br>Creates a Quaternion with the given float as the real part and the other parts 0.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;float</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#getI()">getI</A></B>()</CODE>
+<br>
+<br>Returns the i part of this Quaternion.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;float</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#getJ()">getJ</A></B>()</CODE>
+<br>
+<br>Returns the j part of this Quaternion.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;float</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#getK()">getK</A></B>()</CODE>
+<br>
+<br>Returns the k part of this Quaternion.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#I()">I</A></B>()</CODE>
+<br>
+<br>Returns the square root of -1, i, represented as a quaternion.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#INFINITY()">INFINITY</A></B>()</CODE>
+<br>
+<br>Returns infinity + infinity*i, represented as a quaternion.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;boolean</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#isFinite()">isFinite</A></B>()</CODE>
+<br>
+<br>Returns true if all parts of this Quaternion are finite.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;boolean</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#isInfinite()">isInfinite</A></B>()</CODE>
+<br>
+<br>Returns true if any part of this Quaternion is infinite.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;boolean</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#isNaN()">isNaN</A></B>()</CODE>
+<br>
+<br>Returns true if any part of this Quaternion is not a number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#ln()">ln</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a)</CODE>
+<br>
+<br>Return the natural log of the argument as a new Quaternion.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#multiply()">multiply</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</CODE>
+<br>
+<br>Multiply two quaternions and return a new Quaternion with the result. Since multiplication on quaternions is not commutative a*b is not b*a for all cases. This also means that a/b is ambiguous, since it could mean a(b^-1) or (b^-1)a. To divide use multiply and reciprocal in conjuction to specify the order.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#multiplyReal()">multiplyReal</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;float&nbsp;b)</CODE>
+<br>
+<br>Multiply the given Quaternion by a real divisor and return the result as a new Quaternion.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#NAN()">NAN</A></B>()</CODE>
+<br>
+<br>Returns a Quaternion which is not a number.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#negate()">negate</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a)</CODE>
+<br>
+<br>Return a new Quaternion which is the negation of the argument.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;float</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#norm()">norm</A></B>()</CODE>
+<br>
+<br>Return the norm of this Quaternion.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#ONE()">ONE</A></B>()</CODE>
+<br>
+<br>Returns 1, represented as a quaternion.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#PI()">PI</A></B>()</CODE>
+<br>
+<br>Returns the constant pi, represented as a quaternion.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#powReal()">powReal</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;float&nbsp;b)</CODE>
+<br>
+<br>Return a Quaternion raised to the power of a real as a new Quaternion</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#reciprocal()">reciprocal</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a)</CODE>
+<br>
+<br>Return a new Quaternion which is the reciprocal of the argument.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;float</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#scalar()">scalar</A></B>()</CODE>
+<br>
+<br>Returns the real/scalar part of this Quaternion.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#subtract()">subtract</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</CODE>
+<br>
+<br>Subtract two quaternions and return a new Quaternion with the result.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;string</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#toValueString()">toValueString</A></B>()</CODE>
+<br>
+<br>Return the Quaternion as a string. e.g. 0.3-4.5i</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#uadd()">uadd</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</CODE>
+<br>
+<br>Set this Complex number to add the argument and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#uconjugate()">uconjugate</A></B>()</CODE>
+<br>
+<br>Assign this to its complex conjugate and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#udivideReal()">udivideReal</A></B>(float&nbsp;b)</CODE>
+<br>
+<br>Set this Quaternion to be divided by the real argument and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#uexp()">uexp</A></B>()</CODE>
+<br>
+<br>Exponentiate this Quaternion and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#uln()">uln</A></B>()</CODE>
+<br>
+<br>Sets this Quaternion to the natural logarithm of itself and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#umultiply()">umultiply</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</CODE>
+<br>
+<br>Set this Quaternion to multiply by the argument and return self. Since multiplication on quaternions is not commutative a*b is not b*a for all cases. This action calculates self*b. This also means that a/b is ambiguous, since it could mean a(b^-1) or (b^-1)a. To divide use umultiply and ureciprocal in conjuction to specify the order.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#umultiplyReal()">umultiplyReal</A></B>(float&nbsp;b)</CODE>
+<br>
+<br>Set this Quaternion to be multiplied by the real argument and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#unegate()">unegate</A></B>()</CODE>
+<br>
+<br>Set this Quaternion to its own negation and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#upowReal()">upowReal</A></B>(float&nbsp;x)</CODE>
+<br>
+<br>Raise this Quaternion to the power of a real and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#ureciprocal()">ureciprocal</A></B>()</CODE>
+<br>
+<br>Set this Complex number to its own reciprocal and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#usubtract()">usubtract</A></B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</CODE>
+<br>
+<br>Set this Quaternion to subtract the argument and return self.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;sequence&lt;float&gt;</CODE></FONT></TD><TD><CODE></CODE><CODE><B><A HREF="Quaternion.html#vector()">vector</A></B>()</CODE>
+<br>
+<br>Returns the imaginary/vector parts of this Quaternion.</TD>
+</TR>
+<TR BGCOLOR="white" CLASS="TableRowColor">
+<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1"><CODE>&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A></CODE></FONT></TD><TD><CODE>static </CODE><CODE><B><A HREF="Quaternion.html#ZERO()">ZERO</A></B>()</CODE>
+<br>
+<br>Returns 0, represented as a quaternion.</TD>
+</TR>
+</TABLE>&nbsp;<A NAME="action_detail"></A>
+<TABLE BORDER="1" WIDTH="100%" CELLPADDING="3" CELLSPACING="0" SUMMARY="">
+<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+<TH ALIGN="left" COLSPAN="1"><FONT SIZE="+2"><B>Action detail</B></FONT></TH>
+</TR>
+</TABLE>
+<A NAME="add()"></A>
+<H3>add</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>add</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</PRE>Add two quaternions and return a new Quaternion with the result.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>a+b.</DD>
+</DL>
+<HR>
+<A NAME="bitEquals()"></A>
+<H3>bitEquals</H3>
+<PRE>boolean&nbsp;<B>bitEquals</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</PRE>Returns true if all parts of this Quaternion are bit-equals to the corresponding parts of the argument.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="conjugate()"></A>
+<H3>conjugate</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>conjugate</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a)</PRE>Return a new Quaternion which is the complex conjugate of the argument.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="crossProduct()"></A>
+<H3>crossProduct</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>crossProduct</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</PRE>Calculate the cross product of two Quaternions. If the Quaternions are not vector quaternions, the resultant scalar part will be the product of the scalar parts of the quaternions.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="divideReal()"></A>
+<H3>divideReal</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>divideReal</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;float&nbsp;b)</PRE>Divide the given Quaternion by a real divisor and return the result as a new Quaternion.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>a/b</DD>
+</DL>
+<HR>
+<A NAME="dotProduct()"></A>
+<H3>dotProduct</H3>
+<PRE>float&nbsp;static <B>dotProduct</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</PRE>Calculate the dot product of two vector Quaternions. This ignores the scalar part of the Quaternions.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="E()"></A>
+<H3>E</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>E</B>()</PRE>Returns Euler's number e, represented as a quaternion.<HR>
+<A NAME="exp()"></A>
+<H3>exp</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>exp</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a)</PRE>Exponentiate the argument and return the result as a new Quaternion<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>e<sup>a</sup></DD>
+</DL>
+<HR>
+<A NAME="formatFixed()"></A>
+<H3>formatFixed</H3>
+<PRE>string&nbsp;<B>formatFixed</B>(integer&nbsp;dp)</PRE>Return the Quaternion as a string with a fixed number of decimal places. e.g. 0.30j-4.51k<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>dp</tt>&nbsp;-&nbsp;The number of decimal places in each part.</DD>
+</DL>
+<HR>
+<A NAME="formatScientific()"></A>
+<H3>formatScientific</H3>
+<PRE>string&nbsp;<B>formatScientific</B>(integer&nbsp;sf)</PRE>Return the Quaternion as a string in scientific notation e.g. 1.3e-2+5.6e10j<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>sf</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="fromComplex()"></A>
+<H3>fromComplex</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>fromComplex</B>(<A HREF="../../com/apamax/Complex.html" title="type in com.apamax">com.apamax.Complex</A>&nbsp;c)</PRE>Creates a Quaternion from a Complex number, with the j and k parts 0.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>c</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="fromIFloat()"></A>
+<H3>fromIFloat</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>fromIFloat</B>(float&nbsp;i)</PRE>Creates a Quaternion with the given float as i and the other parts 0.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>i</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="fromJFloat()"></A>
+<H3>fromJFloat</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>fromJFloat</B>(float&nbsp;j)</PRE>Creates a Quaternion with the given float as i and the other parts 0.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>j</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="fromKFloat()"></A>
+<H3>fromKFloat</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>fromKFloat</B>(float&nbsp;k)</PRE>Creates a Quaternion with the given float as k and the other parts 0.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>k</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="fromRealFloat()"></A>
+<H3>fromRealFloat</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>fromRealFloat</B>(float&nbsp;r)</PRE>Creates a Quaternion with the given float as the real part and the other parts 0.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>r</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="getI()"></A>
+<H3>getI</H3>
+<PRE>float&nbsp;<B>getI</B>()</PRE>Returns the i part of this Quaternion.<HR>
+<A NAME="getJ()"></A>
+<H3>getJ</H3>
+<PRE>float&nbsp;<B>getJ</B>()</PRE>Returns the j part of this Quaternion.<HR>
+<A NAME="getK()"></A>
+<H3>getK</H3>
+<PRE>float&nbsp;<B>getK</B>()</PRE>Returns the k part of this Quaternion.<HR>
+<A NAME="I()"></A>
+<H3>I</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>I</B>()</PRE>Returns the square root of -1, i, represented as a quaternion.<HR>
+<A NAME="INFINITY()"></A>
+<H3>INFINITY</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>INFINITY</B>()</PRE>Returns infinity + infinity*i, represented as a quaternion.<HR>
+<A NAME="isFinite()"></A>
+<H3>isFinite</H3>
+<PRE>boolean&nbsp;<B>isFinite</B>()</PRE>Returns true if all parts of this Quaternion are finite.<HR>
+<A NAME="isInfinite()"></A>
+<H3>isInfinite</H3>
+<PRE>boolean&nbsp;<B>isInfinite</B>()</PRE>Returns true if any part of this Quaternion is infinite.<HR>
+<A NAME="isNaN()"></A>
+<H3>isNaN</H3>
+<PRE>boolean&nbsp;<B>isNaN</B>()</PRE>Returns true if any part of this Quaternion is not a number.<HR>
+<A NAME="ln()"></A>
+<H3>ln</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>ln</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a)</PRE>Return the natural log of the argument as a new Quaternion.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>ln(a)</DD>
+</DL>
+<HR>
+<A NAME="multiply()"></A>
+<H3>multiply</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>multiply</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</PRE>Multiply two quaternions and return a new Quaternion with the result. Since multiplication on quaternions is not commutative a*b is not b*a for all cases. This also means that a/b is ambiguous, since it could mean a(b^-1) or (b^-1)a. To divide use multiply and reciprocal in conjuction to specify the order.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>a*b.</DD>
+</DL>
+<HR>
+<A NAME="multiplyReal()"></A>
+<H3>multiplyReal</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>multiplyReal</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;float&nbsp;b)</PRE>Multiply the given Quaternion by a real divisor and return the result as a new Quaternion.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>a*b</DD>
+</DL>
+<HR>
+<A NAME="NAN()"></A>
+<H3>NAN</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>NAN</B>()</PRE>Returns a Quaternion which is not a number.<HR>
+<A NAME="negate()"></A>
+<H3>negate</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>negate</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a)</PRE>Return a new Quaternion which is the negation of the argument.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>-a</DD>
+</DL>
+<HR>
+<A NAME="norm()"></A>
+<H3>norm</H3>
+<PRE>float&nbsp;<B>norm</B>()</PRE>Return the norm of this Quaternion.<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>||a||</DD>
+</DL>
+<HR>
+<A NAME="ONE()"></A>
+<H3>ONE</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>ONE</B>()</PRE>Returns 1, represented as a quaternion.<HR>
+<A NAME="PI()"></A>
+<H3>PI</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>PI</B>()</PRE>Returns the constant pi, represented as a quaternion.<HR>
+<A NAME="powReal()"></A>
+<H3>powReal</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>powReal</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;float&nbsp;b)</PRE>Return a Quaternion raised to the power of a real as a new Quaternion<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>a<sup>b</sup></DD>
+</DL>
+<HR>
+<A NAME="reciprocal()"></A>
+<H3>reciprocal</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>reciprocal</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a)</PRE>Return a new Quaternion which is the reciprocal of the argument.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>-1/a</DD>
+</DL>
+<HR>
+<A NAME="scalar()"></A>
+<H3>scalar</H3>
+<PRE>float&nbsp;<B>scalar</B>()</PRE>Returns the real/scalar part of this Quaternion.<HR>
+<A NAME="subtract()"></A>
+<H3>subtract</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>subtract</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;a,&nbsp;<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</PRE>Subtract two quaternions and return a new Quaternion with the result.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>a</tt>
+</DD>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>a-b.</DD>
+</DL>
+<HR>
+<A NAME="toValueString()"></A>
+<H3>toValueString</H3>
+<PRE>string&nbsp;<B>toValueString</B>()</PRE>Return the Quaternion as a string. e.g. 0.3-4.5i<HR>
+<A NAME="uadd()"></A>
+<H3>uadd</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;<B>uadd</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</PRE>Set this Complex number to add the argument and return self.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="uconjugate()"></A>
+<H3>uconjugate</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;<B>uconjugate</B>()</PRE>Assign this to its complex conjugate and return self.<HR>
+<A NAME="udivideReal()"></A>
+<H3>udivideReal</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;<B>udivideReal</B>(float&nbsp;b)</PRE>Set this Quaternion to be divided by the real argument and return self.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="uexp()"></A>
+<H3>uexp</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;<B>uexp</B>()</PRE>Exponentiate this Quaternion and return self.<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>e<sup>self</sup></DD>
+</DL>
+<HR>
+<A NAME="uln()"></A>
+<H3>uln</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;<B>uln</B>()</PRE>Sets this Quaternion to the natural logarithm of itself and return self.<HR>
+<A NAME="umultiply()"></A>
+<H3>umultiply</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;<B>umultiply</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</PRE>Set this Quaternion to multiply by the argument and return self. Since multiplication on quaternions is not commutative a*b is not b*a for all cases. This action calculates self*b. This also means that a/b is ambiguous, since it could mean a(b^-1) or (b^-1)a. To divide use umultiply and ureciprocal in conjuction to specify the order.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="umultiplyReal()"></A>
+<H3>umultiplyReal</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;<B>umultiplyReal</B>(float&nbsp;b)</PRE>Set this Quaternion to be multiplied by the real argument and return self.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="unegate()"></A>
+<H3>unegate</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;<B>unegate</B>()</PRE>Set this Quaternion to its own negation and return self.<HR>
+<A NAME="upowReal()"></A>
+<H3>upowReal</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;<B>upowReal</B>(float&nbsp;x)</PRE>Raise this Quaternion to the power of a real and return self.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>x</tt>
+</DD>
+</DL>
+<DL>
+<DT>
+<B>Returns:</B>
+</DT>
+<DD>self<sup>x</sup></DD>
+</DL>
+<HR>
+<A NAME="ureciprocal()"></A>
+<H3>ureciprocal</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;<B>ureciprocal</B>()</PRE>Set this Complex number to its own reciprocal and return self.<HR>
+<A NAME="usubtract()"></A>
+<H3>usubtract</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;<B>usubtract</B>(<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;b)</PRE>Set this Quaternion to subtract the argument and return self.<DL>
+<DT>
+<B>Parameters:</B>
+</DT>
+<DD>
+<tt>b</tt>
+</DD>
+</DL>
+<HR>
+<A NAME="vector()"></A>
+<H3>vector</H3>
+<PRE>sequence&lt;float&gt;&nbsp;<B>vector</B>()</PRE>Returns the imaginary/vector parts of this Quaternion.<HR>
+<A NAME="ZERO()"></A>
+<H3>ZERO</H3>
+<PRE>
+<A HREF="../../com/apamax/Quaternion.html" title="type in com.apamax">com.apamax.Quaternion</A>&nbsp;static <B>ZERO</B>()</PRE>Returns 0, represented as a quaternion.<HR>
+<HR>
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0" SUMMARY="">
+<TR>
+<TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2"><A target="_top" HREF="../../index.html?com/apamax/Quaternion.html"><B>FRAMES</B></A>  &nbsp;
+
+            &nbsp;<A target="_top" HREF="Quaternion.html"><B>NO FRAMES</B></A>  &nbsp;
+            &nbsp;<SCRIPT type="text/javascript"></SCRIPT>
+<NOSCRIPT>
+<A HREF="../../alltypes-noframe.html"><B>All Classes</B></A>
+</NOSCRIPT>
+</FONT></TD>
+</TR>
+<TR>
+<TD COLSPAN="2" BGCOLOR="#EEEEFF" CLASS="NavBarCell1">
+<TABLE BORDER="0" WIDTH="100%" CELLPADDING="0" CELLSPACING="3" SUMMARY="">
+<TR ALIGN="center" VALIGN="top">
+<TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../overview-summary.html"><FONT CLASS="NavBarFont1"><B>Overview</B></FONT></A>&nbsp;
+              </TD><TD BGCOLOR="#FFFFFF" CLASS="NavBarCell1"><A HREF="../..//com/apamax/package-summary.html"><FONT CLASS="NavBarFont1"><B>Package</B></FONT></A></TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../deprecated-list.html"><FONT CLASS="NavBarFont1"><B>Deprecated</B></FONT></A>&nbsp;
+              </TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1"><A HREF="../../help-doc.html"><FONT CLASS="NavBarFont1"><B>Help</B></FONT>&nbsp;
+                </A></TD><TD BGCOLOR="#EEEEFF" CLASS="NavBarCell1" WIDTH="100%" ALIGN="RIGHT"></TD>
+</TR>
+</TABLE>
+</TD><TD ALIGN="right" VALIGN="top" ROWSPAN="3"><EM></EM></TD>
+</TR>
+<TR>
+<TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">SUMMARY:&nbsp;IMPORT&nbsp;|&nbsp;CONSTANT&nbsp;|&nbsp;MEMBER&nbsp;|&nbsp;<A HREF="#action_summary">ACTION</A></FONT></TD><TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">DETAIL:&nbsp;IMPORT&nbsp;|&nbsp;CONSTANT&nbsp;|&nbsp;MEMBER&nbsp;|&nbsp;<A HREF="#action_detail">ACTION</A></FONT></TD>
+</TR>
+</TABLE>
+<HR>
+</BODY>
+</HTML>
